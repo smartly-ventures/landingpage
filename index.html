@@ -3,653 +3,581 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Smartly Labs — Intelligence for Emerging Markets</title>
+<title>Smartly Labs — Operational Intelligence Infrastructure</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
-/* ─── TYPE SCALE (8pt grid, consistent everywhere) ───
-   xs:   11px / 1.4  — labels, tags, meta
-   sm:   13px / 1.5  — captions, fine print
-   base: 16px / 1.6  — body
-   md:   18px / 1.5  — emphasized body
-   lg:   clamp(22px, 2.4vw, 28px) / 1.2  — section intros
-   xl:   clamp(28px, 3.6vw, 44px) / 1.05 — section headings
-   2xl:  clamp(40px, 5.5vw, 68px) / 1.0  — large headings
-   3xl:  clamp(54px, 7.5vw, 96px) / .94  — hero / manifesto
-*/
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  background: #f8f7f4;
-  color: #1c1917;
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:#0c0c0b;color:#ede9e4;
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+  font-size:16px;line-height:1.6;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+:root{
+  --ink:#ede9e4;
+  --ink2:#c8c4bf;
+  --ink3:#9b9793;
+  --ink4:#726e6b;
+  --line:#333130;
+  --line2:#272524;
+  --bg:#0c0c0b;
+  --bg2:#111110;
+  --bg3:#161513;
+  --live:#22c55e;
+  --r:8px;
 }
 
-/* ─── SCROLL REVEAL ─── */
-.sr { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
-.sr.on { opacity: 1; transform: none; }
-.d1 { transition-delay: .1s; }
-.d2 { transition-delay: .22s; }
-.d3 { transition-delay: .34s; }
+.page{display:none}.page.active{display:block}
 
-/* ─── TOKENS ─── */
-:root {
-  --ink:    #1c1917;
-  --ink2:   #78716c;
-  --ink3:   #a8a29e;
-  --line:   #e7e5e4;
-  --bg:     #f8f7f4;
-  --white:  #ffffff;
-  --green:  #15803d;
-  --r:      8px;   /* consistent border-radius */
-}
+.sr{opacity:0;transform:translateY(10px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)}
+.sr.on{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.32s}.d4{transition-delay:.46s}
 
-/* ─── NAV ─── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  height: 56px; display: flex; align-items: center; justify-content: space-between;
-  padding: 0 40px;
-  background: rgba(248,247,244,.93);
-  border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(14px);
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:52px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;
+  background:rgba(12,12,11,.92);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(24px);
 }
-.n-logo {
-  font-size: 14px; font-weight: 700; letter-spacing: -.02em;
-  color: var(--ink); text-decoration: none;
-}
-.n-links { display: flex; gap: 0; list-style: none; }
-.n-links a {
-  font-size: 13px; font-weight: 400; color: var(--ink2);
-  text-decoration: none; padding: 6px 14px;
-  transition: color .15s;
-}
-.n-links a:hover { color: var(--ink); }
-.n-cta {
-  /* CTA: dark fill, 8px radius — links to #access */
-  font-size: 13px; font-weight: 600; letter-spacing: -.01em;
-  color: var(--white); background: var(--ink);
-  padding: 8px 18px; border-radius: var(--r);
-  text-decoration: none; transition: opacity .15s;
-}
-.n-cta:hover { opacity: .78; }
+.n-logo{display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none}
+.n-logo-img{width:22px;height:22px;object-fit:contain;flex-shrink:0;filter:brightness(10)}
+.n-logo-word{font-size:13px;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+.n-links{display:flex;list-style:none;align-items:center}
+.n-links a{font-size:12px;font-weight:400;color:var(--ink2);text-decoration:none;padding:6px 10px;transition:color .15s}
+.n-links a:hover{color:var(--ink)}
+.n-cta{font-size:12px;font-weight:600;letter-spacing:-.01em;color:#0c0c0b;background:var(--ink);padding:7px 16px;border-radius:99px;text-decoration:none;transition:opacity .15s}
+.n-cta:hover{opacity:.82}
+.n-back{font-size:12px;font-weight:400;color:var(--ink3);display:flex;align-items:center;gap:6px;background:none;border:none;cursor:pointer;font-family:inherit;transition:color .15s}
+.n-back:hover{color:var(--ink)}
+.n-back svg{width:10px;height:10px}
+#nav-main{display:flex;align-items:center;gap:4px}
+#nav-cohort{display:none;align-items:center}
 
-/* ─── HERO ─── */
-.hero {
-  position: relative; min-height: 100svh;
-  background: var(--white);
-  display: flex; flex-direction: column;
-  padding-top: 56px;
-  border-bottom: 1px solid var(--line);
-  overflow: hidden;
+/* HERO */
+.hero{
+  position:relative;min-height:100svh;
+  background:var(--bg);
+  display:flex;flex-direction:column;
+  padding-top:52px;overflow:hidden;
+  border-bottom:1px solid var(--line);
 }
-.hero-bg {
-  position: absolute; inset: 0; z-index: 0;
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
   background:
-    radial-gradient(ellipse 55% 65% at 88% 12%, rgba(255,110,75,.2) 0%, transparent 58%),
-    radial-gradient(ellipse 45% 55% at 12% 88%, rgba(255,170,80,.15) 0%, transparent 60%),
-    radial-gradient(ellipse 35% 40% at 52% 42%, rgba(240,80,100,.07) 0%, transparent 55%),
-    var(--white);
-  animation: hg 12s ease-in-out infinite alternate;
+    radial-gradient(ellipse 60% 70% at 90% 5%,rgba(255,90,50,.13) 0%,transparent 52%),
+    radial-gradient(ellipse 45% 55% at 5% 95%,rgba(255,145,60,.08) 0%,transparent 55%),
+    var(--bg);
+  animation:hbg 18s ease-in-out infinite alternate;
 }
-@keyframes hg { 0% { opacity:.82; } 50% { opacity:1; } 100% { opacity:.88; } }
+@keyframes hbg{0%{opacity:.7}50%{opacity:1}100%{opacity:.8}}
 
-.hero-inner {
-  position: relative; z-index: 1; flex: 1;
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 72px 40px 56px;
-  max-width: 1200px; width: 100%; margin: 0 auto;
+.hero-inner{
+  position:relative;z-index:1;flex:1;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 32px 52px;
+  max-width:960px;width:100%;margin:0 auto;
 }
-.hero-loc {
-  /* xs */
-  font-size: 11px; font-weight: 500; letter-spacing: .1em;
-  text-transform: uppercase; color: var(--ink2); margin-bottom: 28px;
+.hero-h1{
+  font-size:clamp(48px,8vw,88px);
+  font-weight:800;line-height:.91;letter-spacing:-.05em;
+  color:var(--ink);max-width:680px;margin-bottom:24px;
 }
-.hero-h1 {
-  /* 3xl */
-  font-size: clamp(54px, 7.5vw, 96px);
-  font-weight: 800; line-height: .94; letter-spacing: -.045em;
-  color: var(--ink); max-width: 820px; margin-bottom: 32px;
-}
-.hero-p {
-  /* base */
-  font-size: 17px; font-weight: 300; color: var(--ink2);
-  max-width: 440px; line-height: 1.7; margin-bottom: 40px;
-}
-.hero-p em { font-style: italic; color: var(--ink); font-weight: 400; }
-.hero-btns { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.hero-sub{font-size:16px;font-weight:300;color:var(--ink2);max-width:380px;line-height:1.72;margin-bottom:36px}
+.hero-btns{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 
-/* PRIMARY — dark fill, 8px radius */
-.btn-dark {
-  font-size: 14px; font-weight: 600; letter-spacing: -.01em;
-  color: var(--white); background: var(--ink);
-  padding: 12px 26px; border-radius: var(--r);
-  text-decoration: none; transition: opacity .15s;
-  display: inline-flex; align-items: center; gap: 7px;
+.btn-primary{
+  font-size:13px;font-weight:600;letter-spacing:-.01em;
+  color:#0c0c0b;background:var(--ink);
+  padding:11px 22px;border-radius:99px;
+  text-decoration:none;transition:opacity .15s,transform .12s;
+  display:inline-flex;align-items:center;gap:8px;
 }
-.btn-dark:hover { opacity: .78; }
-.btn-dark svg { width: 10px; height: 10px; opacity: .65; }
+.btn-primary:hover{opacity:.85;transform:translateY(-1px)}
+.btn-primary svg{width:9px;height:9px;opacity:.6;flex-shrink:0}
+.btn-text{font-size:13px;font-weight:400;color:var(--ink2);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:1px;transition:color .15s,border-color .15s}
+.btn-text:hover{color:var(--ink);border-color:var(--ink3)}
 
-/* GHOST — underline text link, no border box */
-.btn-ghost {
-  font-size: 14px; font-weight: 400; color: var(--ink2);
-  text-decoration: none;
-  border-bottom: 1px solid var(--line); padding-bottom: 1px;
-  transition: color .15s, border-color .15s;
+/* SIGNAL STRIP */
+.signal-strip{position:relative;z-index:1;flex-shrink:0;border-top:1px solid var(--line);background:var(--bg2)}
+.sig-pre{
+  padding:9px 32px;border-bottom:1px solid var(--line2);
+  font-family:'DM Mono',monospace;font-size:10px;font-weight:300;
+  color:var(--ink3);letter-spacing:.06em;
+  max-width:960px;margin:0 auto;width:100%;
+  opacity:1;
 }
-.btn-ghost:hover { color: var(--ink); border-color: var(--ink2); }
+.sig-grid{display:grid;grid-template-columns:repeat(3,1fr);max-width:960px;margin:0 auto}
+.sig{padding:20px 32px;border-right:1px solid var(--line)}
+.sig:last-child{border-right:none}
+.sig-val{font-size:clamp(24px,3vw,36px);font-weight:700;letter-spacing:-.045em;color:var(--ink);line-height:1;margin-bottom:5px}
+.sig-lbl{font-size:12px;font-weight:600;color:var(--ink);margin-bottom:3px;letter-spacing:-.01em}
+.sig-lbl a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);transition:border-color .15s}
+.sig-lbl a:hover{border-color:var(--ink3)}
+.sig-sub{font-size:12px;font-weight:300;color:var(--ink3);line-height:1.5;max-width:220px}
+.sig-proof{font-family:'DM Mono',monospace;font-size:11px;color:var(--ink3);letter-spacing:.04em;margin-top:8px;line-height:1.5}
 
-/* hero stats strip — 3 different signals, not repeated later */
-.hero-stats {
-  position: relative; z-index: 1; flex-shrink: 0;
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid rgba(231,229,228,.85);
-  background: rgba(255,255,255,.75);
-  backdrop-filter: blur(12px);
-}
-.hstat { padding: 22px 40px; border-right: 1px solid rgba(231,229,228,.85); }
-.hstat:last-child { border-right: none; }
-.hstat-val {
-  /* 2xl */
-  font-size: clamp(28px, 3vw, 40px);
-  font-weight: 700; letter-spacing: -.04em;
-  color: var(--ink); line-height: 1; margin-bottom: 4px;
-}
-.hstat-lbl {
-  /* xs */
-  font-size: 12px; font-weight: 400; color: var(--ink3);
-}
-.hstat-lbl a {
-  color: var(--ink); text-decoration: none;
-  border-bottom: 1px solid var(--line);
-  transition: border-color .15s;
-}
-.hstat-lbl a:hover { border-color: var(--ink); }
+/* LAYOUT */
+.sec{padding:72px 32px;border-top:1px solid var(--line)}
+.sec-w{background:var(--bg2)}.sec-t{background:var(--bg)}
+.wi{max-width:960px;margin:0 auto}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
 
-/* ─── LAYOUT ─── */
-.sec { padding: 96px 40px; border-top: 1px solid var(--line); }
-.sec-w { background: var(--white); }
-.sec-t { background: var(--bg); }
-.wi { max-width: 1200px; margin: 0 auto; }
+/* TYPE */
+.t-kicker{font-family:'DM Mono',monospace;font-size:11px;font-weight:300;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:14px}
+.t-xl{font-size:clamp(24px,3.5vw,38px);font-weight:700;letter-spacing:-.04em;line-height:1.0;color:var(--ink)}
+.t-xl .dim{color:var(--ink3);font-weight:300}
+.t-xl .it{font-style:italic;font-weight:300;color:var(--ink2)}
+.t-body{font-size:15px;font-weight:400;color:var(--ink2);line-height:1.78;max-width:440px}
+.t-body strong{color:var(--ink);font-weight:600}
+.t-sm{font-size:12px;font-weight:300;color:var(--ink3);line-height:1.6;letter-spacing:.01em}
 
-/* ─── CONSISTENT TYPOGRAPHY CLASSES ─── */
-.t-label {
-  /* xs: section chapter marker */
-  font-size: 11px; font-weight: 500; letter-spacing: .1em;
-  text-transform: uppercase; color: var(--ink3); margin-bottom: 36px;
-}
-.t-xl {
-  /* xl: section heading */
-  font-size: clamp(28px, 3.6vw, 44px);
-  font-weight: 700; letter-spacing: -.04em; line-height: 1.0;
-  color: var(--ink);
-}
-.t-xl .dim { color: var(--ink3); font-weight: 300; }
-.t-xl .it { font-style: italic; font-weight: 300; color: var(--ink2); }
+/* ILIST */
+.ilist{border-top:1px solid var(--line)}
+.iitem{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px;font-weight:500;color:var(--ink);letter-spacing:-.01em}
+.iitem::before{content:'';width:3px;height:3px;border-radius:50%;background:var(--ink3);flex-shrink:0}
 
-.t-lg {
-  /* lg: intro / supporting statement */
-  font-size: clamp(18px, 2vw, 24px);
-  font-weight: 500; letter-spacing: -.02em; line-height: 1.25;
-  color: var(--ink2);
-}
-.t-lg strong { color: var(--ink); font-weight: 700; }
+/* SYSTEM DIAGRAM */
+.sys-diagram{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:24px}
 
-.t-body {
-  /* base: body copy */
-  font-size: 16px; font-weight: 300; color: var(--ink2);
-  line-height: 1.75; max-width: 520px;
+/* FLOW */
+.flow-wrap{display:flex;flex-direction:column;gap:0;width:100%}
+.flow-node{
+  padding:14px 18px;border:1px solid var(--line);border-radius:6px;
+  font-size:13px;font-weight:600;letter-spacing:-.02em;
+  color:var(--ink);background:var(--bg2);transition:border-color .15s;
+  display:flex;align-items:center;justify-content:space-between;
 }
-.t-body strong { color: var(--ink); font-weight: 500; }
+.flow-node:hover{border-color:var(--ink3)}
+.flow-node.end{background:var(--ink);color:#0c0c0b;border-color:var(--ink)}
+.flow-node-tag{font-family:'DM Mono',monospace;font-size:9px;font-weight:300;opacity:.4;letter-spacing:.06em;text-transform:uppercase}
+.flow-arr{display:flex;align-items:center;justify-content:center;height:26px;font-size:10px;color:var(--ink3)}
 
-.t-sm {
-  /* sm: captions, footnotes */
-  font-size: 13px; font-weight: 300; color: var(--ink3); line-height: 1.6;
-}
-.t-sm a {
-  color: var(--ink2); text-decoration: none;
-  border-bottom: 1px solid var(--line);
-  transition: color .15s, border-color .15s;
-}
-.t-sm a:hover { color: var(--ink); border-color: var(--ink2); }
+/* GNOTES */
+.gnotes{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:40px}
+.gnote{padding:16px 20px 16px 0;border-bottom:1px solid var(--line);font-size:13px;font-weight:400;color:var(--ink2);line-height:1.65}
+.gnote:not(:first-child){padding-left:20px;border-left:1px solid var(--line)}
 
-/* ─── GRID ─── */
-.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-.g3 { display: grid; grid-template-columns: repeat(3,1fr); }
+/* INFRA VISUAL */
+.infra-visual{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:32px}
+.infra-visual-header{padding:10px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:6px}
+.infra-visual-dot{width:6px;height:6px;border-radius:50%}
+.infra-visual-title{font-family:'DM Mono',monospace;font-size:10px;font-weight:300;color:var(--ink3);letter-spacing:.06em;margin-left:4px}
+.infra-visual-body{padding:20px 16px}
 
-/* ─── ITEM LIST ─── */
-.ilist { border-top: 1px solid var(--line); }
-.iitem {
-  display: flex; align-items: baseline; justify-content: space-between;
-  padding: 17px 0; border-bottom: 1px solid var(--line);
-  font-size: 15px; font-weight: 500; letter-spacing: -.01em;
-  color: var(--ink); gap: 12px; line-height: 1.4;
-}
-.i-meta { font-size: 13px; font-weight: 300; color: var(--ink2); margin-left: 10px; }
-.i-tag {
-  font-size: 11px; font-weight: 500; letter-spacing: .06em;
-  text-transform: uppercase; color: var(--ink3); flex-shrink: 0;
-}
-.i-tag.live { color: var(--green); }
+/* CARDS */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:28px}
+.card{background:var(--bg2);padding:24px 22px;transition:background .2s}
+.card:hover{background:var(--bg3)}
+.c-tag{font-family:'DM Mono',monospace;font-size:10px;font-weight:300;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:9px;display:block}
+.c-name{font-size:15px;font-weight:700;letter-spacing:-.025em;color:var(--ink);margin-bottom:7px;line-height:1.2}
+.c-body{font-size:13px;font-weight:300;color:var(--ink2);line-height:1.65}
 
-/* ─── FLOW TRACK ─── */
-.flow {
-  display: flex; align-items: stretch;
-  border: 1px solid var(--line); border-radius: var(--r);
-  margin: 40px 0 36px; overflow: hidden;
-}
-.fstep {
-  flex: 1; padding: 18px 16px; border-right: 1px solid var(--line);
-  position: relative; cursor: default; transition: background .15s;
-}
-.fstep:last-child { border-right: none; }
-.fstep:hover { background: var(--bg); }
-.f-n { font-size: 10px; font-weight: 400; letter-spacing: .06em; color: var(--ink3); display: block; margin-bottom: 4px; }
-.f-name { font-size: 14px; font-weight: 600; letter-spacing: -.02em; color: var(--ink); display: block; }
-.f-arr { position: absolute; right: -7px; top: 50%; transform: translateY(-50%); z-index: 2; font-size: 10px; color: var(--line); background: var(--white); }
-.sec-t .f-arr { background: var(--bg); }
+/* TRACKS */
+.tracks-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:24px}
+.track{background:var(--bg2);padding:22px 20px;transition:background .2s;position:relative}
+.track:hover{background:var(--bg3)}
+.track.full{grid-column:1/-1}
+.tr-n{font-family:'DM Mono',monospace;font-size:10px;font-weight:300;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;display:block}
+.tr-name{font-size:14px;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:5px;line-height:1.2}
+.tr-body{font-size:12px;font-weight:300;color:var(--ink2);line-height:1.6}
+.tr-arrow{position:absolute;top:22px;right:20px;font-size:12px;color:var(--ink3);opacity:0;transition:opacity .15s}
+.track:hover .tr-arrow{opacity:1}
 
-.gnotes { display: grid; grid-template-columns: repeat(3,1fr); border-top: 1px solid var(--line); }
-.gnote {
-  padding: 18px 28px 18px 0; border-bottom: 1px solid var(--line);
-  font-size: 14px; font-weight: 300; color: var(--ink2); line-height: 1.6;
-}
-.gnote:not(:first-child) { padding-left: 28px; border-left: 1px solid var(--line); }
+/* ACCESS */
+.acs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:36px}
+.ac{padding:28px 24px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg2);display:flex;flex-direction:column;transition:border-color .2s}
+.ac:hover{border-color:var(--ink3)}
+.ac-for{font-family:'DM Mono',monospace;font-size:10px;font-weight:300;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.ac-title{font-size:18px;font-weight:700;letter-spacing:-.03em;color:var(--ink);margin-bottom:10px;line-height:1.15}
+.ac-body{font-size:13px;font-weight:300;color:var(--ink2);line-height:1.75;margin-bottom:22px;flex:1}
+.ac-cta{font-size:13px;font-weight:600;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:opacity .15s;align-self:flex-start}
+.ac-cta:hover{opacity:.5}
+.ac-cta svg{width:9px;height:9px}
 
-/* ─── CARDS ─── */
-.cards {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 1px; background: var(--line);
-  border: 1px solid var(--line); border-radius: var(--r);
-  margin-top: 40px; overflow: hidden;
-}
-.card { background: var(--white); padding: 28px 24px; transition: background .15s; }
-.card:hover { background: var(--bg); }
-.c-tag { font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--ink3); margin-bottom: 10px; }
-.c-name { font-size: 16px; font-weight: 700; letter-spacing: -.02em; color: var(--ink); margin-bottom: 6px; line-height: 1.2; }
-.c-body { font-size: 13px; font-weight: 300; color: var(--ink2); line-height: 1.65; }
+/* MANIFESTO */
+.manifesto{background:var(--line2);padding:72px 32px;border-top:1px solid var(--line)}
+.mf-inner{max-width:960px;margin:0 auto}
+.mf-layout{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+.mf-big{font-size:clamp(32px,5vw,58px);font-weight:800;letter-spacing:-.05em;line-height:.93;color:var(--ink)}
+.mf-big .ghost{color:rgba(237,233,228,.1);font-weight:200;font-style:italic}
+.mf-right{display:flex;flex-direction:column;gap:8px}
+.mf-cell{padding:18px 20px;border:1px solid var(--line);border-radius:6px;background:rgba(255,255,255,.02)}
+.mf-lbl{font-family:'DM Mono',monospace;font-size:10px;font-weight:300;letter-spacing:.08em;text-transform:uppercase;color:rgba(237,233,228,.25);margin-bottom:5px;display:block}
+.mf-v{font-size:13px;font-weight:300;color:rgba(237,233,228,.42);line-height:1.7}
+.mf-v strong{color:var(--ink);font-weight:500}
 
-/* ─── DISTRIBUTION NUMBERS ─── */
-.dnums { display: grid; grid-template-columns: repeat(3,1fr); border-top: 1px solid var(--line); margin-top: 52px; }
-.dnum { padding: 32px 0; border-bottom: 1px solid var(--line); }
-.dnum + .dnum { border-left: 1px solid var(--line); padding-left: 40px; }
-.d-val {
-  font-size: clamp(38px, 5vw, 64px);
-  font-weight: 700; letter-spacing: -.05em;
-  color: var(--ink); line-height: 1; margin-bottom: 6px;
-}
-.d-lbl { font-size: 13px; font-weight: 300; color: var(--ink2); line-height: 1.5; max-width: 180px; }
+/* CLOSING */
+.closing{padding:80px 32px;background:var(--bg);border-top:1px solid var(--line);position:relative;overflow:hidden}
+.closing-bg{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 55% 65% at 95% 100%,rgba(255,90,50,.08) 0%,transparent 55%),radial-gradient(ellipse 40% 50% at 5% 0%,rgba(255,145,60,.05) 0%,transparent 52%)}
+.closing-inner{max-width:960px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:end}
+.closing-big{font-size:clamp(32px,5.5vw,60px);font-weight:800;letter-spacing:-.05em;line-height:.93;color:var(--ink)}
+.closing-big .ghost{color:var(--ink4);font-weight:200}
+.closing-right{display:flex;flex-direction:column;justify-content:flex-end;gap:16px}
+.closing-statement{font-size:15px;font-weight:300;color:var(--ink2);line-height:1.75;max-width:320px}
+.closing-foot{font-family:'DM Mono',monospace;font-size:11px;font-weight:300;color:var(--ink3);letter-spacing:.04em}
 
-/* ─── MANIFESTO — dark ─── */
-.manifesto {
-  background: var(--ink); padding: 112px 40px; text-align: center;
-  border-top: 1px solid var(--line);
-}
-.mf-inner { max-width: 820px; margin: 0 auto; }
-.mf-big {
-  font-size: clamp(38px, 5.8vw, 80px);
-  font-weight: 800; letter-spacing: -.045em; line-height: .96;
-  color: var(--white); margin-bottom: 52px;
-}
-.mf-big .ghost { color: rgba(255,255,255,.18); font-weight: 200; }
-.mf-trio {
-  display: grid; grid-template-columns: repeat(3,1fr);
-  gap: 1px; background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: var(--r); overflow: hidden; text-align: left;
-}
-.mf-cell { padding: 24px 22px; }
-.mf-l { font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 8px; }
-.mf-v { font-size: 13px; font-weight: 300; color: rgba(255,255,255,.5); line-height: 1.65; }
-.mf-v strong { color: var(--white); font-weight: 500; }
+/* FOOTER */
+footer{background:var(--line2);border-top:1px solid var(--line);padding:24px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.f-brand{font-size:13px;font-weight:700;letter-spacing:-.02em;color:var(--ink);display:flex;align-items:center;gap:8px}
+.f-brand-img{width:18px;height:18px;object-fit:contain;flex-shrink:0;filter:brightness(10)}
+.f-sub{font-size:11px;font-weight:300;color:var(--ink3);margin-top:3px;max-width:340px;line-height:1.5}
+.f-links{display:flex;gap:20px;align-items:center}
+.f-link{font-size:12px;font-weight:400;color:var(--ink2);text-decoration:none;transition:color .15s;cursor:pointer}
+.f-link:hover{color:var(--ink)}
 
-/* ─── ACCESS CARDS ─── */
-.acs {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 16px; max-width: 720px; margin-top: 44px;
-}
-.ac {
-  padding: 32px 28px;
-  border: 1px solid var(--line); border-radius: var(--r);
-  background: var(--white);
-  transition: border-color .2s, box-shadow .2s;
-}
-.ac:hover { border-color: #c7c3bc; box-shadow: 0 3px 20px rgba(0,0,0,.06); }
-.ac-for { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink3); margin-bottom: 10px; }
-.ac-title { font-size: 20px; font-weight: 700; letter-spacing: -.025em; color: var(--ink); margin-bottom: 8px; line-height: 1.1; }
-.ac-body { font-size: 14px; font-weight: 300; color: var(--ink2); line-height: 1.65; margin-bottom: 22px; }
-/* inline CTA link — not a button */
-.ac-link {
-  font-size: 13px; font-weight: 600; color: var(--ink);
-  text-decoration: none; display: inline-flex; align-items: center; gap: 5px;
-  transition: opacity .15s;
-}
-.ac-link:hover { opacity: .55; }
-.ac-link svg { width: 9px; height: 9px; }
+/* COHORT PAGE */
+.ch-hero{padding:108px 32px 68px;border-bottom:1px solid var(--line);background:var(--bg2)}
+.ch-inner{max-width:880px;margin:0 auto}
+.ch-h1{font-size:clamp(30px,5vw,54px);font-weight:800;letter-spacing:-.045em;line-height:.95;color:var(--ink);margin-bottom:22px;max-width:580px}
+.ch-sub{font-size:15px;font-weight:300;color:var(--ink2);line-height:1.8;max-width:500px}
+.ch-sec-lbl{display:block;font-family:'DM Mono',monospace;font-size:11px;font-weight:300;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;max-width:880px;margin:0 auto;padding:44px 32px 0;border-top:1px solid var(--line)}
+.ch-members{max-width:880px;margin:0 auto;padding:0 32px}
+.member{display:grid;grid-template-columns:180px 1fr;gap:44px;align-items:start;padding:36px 0;border-bottom:1px solid var(--line)}
+.m-name{font-size:clamp(17px,2.2vw,22px);font-weight:700;letter-spacing:-.04em;line-height:.97;color:var(--ink);margin-bottom:7px}
+.m-role{font-size:10px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);line-height:1.6}
+.m-bio{font-size:13px;font-weight:300;color:var(--ink2);line-height:1.85;max-width:520px;margin-bottom:14px}
+.m-signal{font-family:'DM Mono',monospace;font-size:10px;font-weight:300;color:var(--ink3);letter-spacing:.02em;line-height:1.6;margin-bottom:12px}
+.m-signal span::after{content:' · ';color:var(--line)}
+.m-signal span:last-child::after{content:''}
+.m-links{display:flex;gap:14px}
+.m-link{font-size:11px;font-weight:400;color:var(--ink3);text-decoration:none;letter-spacing:.02em;border-bottom:1px solid transparent;padding-bottom:1px;transition:color .15s,border-color .15s}
+.m-link:hover{color:var(--ink);border-color:var(--ink3)}
+.ch-closing{padding:64px 32px;border-top:1px solid var(--line);background:var(--bg)}
+.ch-closing-inner{max-width:880px;margin:0 auto}
+.ch-closing-big{font-size:clamp(22px,3.5vw,40px);font-weight:700;letter-spacing:-.04em;line-height:1.04;color:var(--ink);max-width:560px}
+.ch-closing-big .dim{color:var(--ink3);font-weight:300;font-style:italic}
 
-/* ─── CLOSING — gradient bookend ─── */
-.closing {
-  padding: 120px 40px; position: relative;
-  background: var(--white); border-top: 1px solid var(--line); overflow: hidden;
-}
-.closing-bg {
-  position: absolute; inset: 0; z-index: 0;
-  background:
-    radial-gradient(ellipse 55% 60% at 95% 95%, rgba(255,110,75,.16) 0%, transparent 58%),
-    radial-gradient(ellipse 40% 50% at 5% 5%, rgba(255,170,80,.11) 0%, transparent 55%),
-    var(--white);
-  pointer-events: none;
-}
-.closing-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
-.closing-big {
-  font-size: clamp(52px, 7.5vw, 104px);
-  font-weight: 800; letter-spacing: -.05em; line-height: .92; color: var(--ink);
-}
-.closing-big .ghost { color: var(--line); }
-
-/* ─── FOOTER ─── */
-footer {
-  background: var(--bg); border-top: 1px solid var(--line);
-  padding: 36px 40px;
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
-}
-.f-brand { font-size: 14px; font-weight: 700; letter-spacing: -.02em; color: var(--ink); }
-.f-sub { font-size: 12px; font-weight: 300; color: var(--ink3); margin-top: 3px; }
-.f-links { display: flex; gap: 24px; align-items: center; }
-.f-link { font-size: 13px; font-weight: 400; color: var(--ink2); text-decoration: none; transition: color .15s; }
-.f-link:hover { color: var(--ink); }
-/* investor link stands out slightly */
-.f-link-inv { font-size: 13px; font-weight: 600; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px; transition: border-color .15s; }
-.f-link-inv:hover { border-color: var(--ink); }
-
-/* ─── MOBILE ─── */
-@media (max-width: 860px) {
-  nav { padding: 0 20px; }
-  .n-links { display: none; }
-  .hero-inner { padding: 48px 20px 40px; }
-  .hero-stats { grid-template-columns: 1fr; }
-  .hstat { border-right: none; border-bottom: 1px solid rgba(231,229,228,.85); padding: 18px 20px; }
-  .hstat:last-child { border-bottom: none; }
-  .sec { padding: 64px 20px; }
-  .manifesto { padding: 72px 20px; }
-  .closing { padding: 80px 20px; }
-  footer { padding: 28px 20px; flex-direction: column; gap: 20px; }
-  .f-links { flex-direction: column; align-items: flex-start; gap: 12px; }
-  .g2 { grid-template-columns: 1fr; gap: 40px; }
-  .g3 { grid-template-columns: 1fr; }
-  .gnotes { grid-template-columns: 1fr; }
-  .gnote:not(:first-child) { padding-left: 0; border-left: none; border-top: 1px solid var(--line); }
-  .cards { grid-template-columns: 1fr; }
-  .dnums { grid-template-columns: 1fr; }
-  .dnum + .dnum { border-left: none; border-top: 1px solid var(--line); padding-left: 0; padding-top: 24px; }
-  .flow { flex-direction: column; }
-  .fstep { border-right: none; border-bottom: 1px solid var(--line); }
-  .fstep:last-child { border-bottom: none; }
-  .f-arr { display: none; }
-  .mf-trio { grid-template-columns: 1fr; }
-  .acs { grid-template-columns: 1fr; }
+/* MOBILE */
+@media(max-width:720px){
+  nav{padding:0 16px}
+  .n-links{display:none}
+  .hero-inner{padding:52px 16px 36px}
+  .sig-pre{padding:9px 16px}
+  .sig-grid{grid-template-columns:1fr}
+  .sig{border-right:none;border-bottom:1px solid var(--line);padding:16px}
+  .sig:last-child{border-bottom:none}
+  .sec{padding:52px 16px}
+  .manifesto,.closing{padding:56px 16px}
+  footer{padding:20px 16px;flex-direction:column;gap:14px}
+  .f-links{flex-direction:column;align-items:flex-start;gap:8px}
+  .g2{grid-template-columns:1fr;gap:36px}
+  .cards,.acs{grid-template-columns:1fr}
+  .tracks-grid{grid-template-columns:1fr}
+  .gnotes{grid-template-columns:1fr}
+  .gnote:not(:first-child){padding-left:0;border-left:none;border-top:1px solid var(--line)}
+  .mf-layout,.closing-inner{grid-template-columns:1fr;gap:36px}
+  .ch-hero{padding:88px 16px 52px}
+  .ch-sec-lbl{padding:36px 16px 0}
+  .ch-members{padding:0 16px}
+  .member{grid-template-columns:1fr;gap:14px}
+  .ch-closing{padding:48px 16px}
 }
 </style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
+<!-- NAV -->
 <nav>
-  <a class="n-logo" href="#">Smartly Labs</a>
-  <ul class="n-links">
-    <li><a href="#what">Approach</a></li>
-    <li><a href="#build">Systems</a></li>
-    <li><a href="#shipped">Shipped</a></li>
-    <li><a href="#access">Access</a></li>
-  </ul>
-  <a class="n-cta" href="#access">Get in touch</a>
+  <span class="n-logo" onclick="showPage('main')">
+    <img class="n-logo-img" src="Logos-3.png" alt="Smartly Labs"/>
+    <span class="n-logo-word">Smartly Labs</span>
+  </span>
+  <div id="nav-main" style="display:flex;align-items:center;gap:4px">
+    <ul class="n-links">
+      <li><a href="#what" onclick="return goTo('what')">What this is</a></li>
+      <li><a href="#infra" onclick="return goTo('infra')">Infrastructure</a></li>
+      <li><a href="#tracks" onclick="return goTo('tracks')">Tracks</a></li>
+      <li><a href="#access" onclick="return goTo('access')">Access</a></li>
+    </ul>
+    <a class="n-cta" href="#access" onclick="return goTo('access')">Access live infrastructure</a>
+  </div>
+  <div id="nav-cohort" style="display:none;align-items:center">
+    <button class="n-back" onclick="showPage('main')">
+      <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 2L2 5l5 3"/></svg>
+      Back
+    </button>
+  </div>
 </nav>
 
-<!-- ── HERO ── -->
+<!-- PAGE: MAIN -->
+<div id="page-main" class="page active">
+
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-inner">
-    <p class="hero-loc">India · Applied AI Systems · 2026</p>
-    <h1 class="hero-h1">Built where<br/>AI breaks.</h1>
-    <p class="hero-p">
-      We build AI systems for the most complex deployment environment on earth.
-      <em>Built in India. Stress-tested for the world.</em>
-    </p>
-    <div class="hero-btns">
-      <!-- PRIMARY: scrolls to approach -->
-      <a class="btn-dark" href="#what">
-        See the approach
-        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M2 8L8 2M8 2H3.5M8 2V6.5"/>
-        </svg>
+    <h1 class="hero-h1 sr d1">Built where<br/>AI breaks,<br/>learns,<br/>and compounds.</h1>
+    <p class="hero-sub sr d2">We build infrastructure that turns real-world deployments, evaluations, and contributor workflows into systems that improve continuously through usage.<br/><br/><span style="color:var(--ink3);font-size:14px;line-height:1.7;display:block;margin-top:10px">Contributors evaluate, improve, and deploy live systems through operational workflows running on Smartly infrastructure.</span></p>
+    <div class="hero-btns sr d3">
+      <a class="btn-primary" href="#access" onclick="return goTo('access')">
+        Access live infrastructure
+        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8L8 2M8 2H3.5M8 2V6.5"/></svg>
       </a>
-      <!-- GHOST: opens investor email -->
-      <a class="btn-ghost" href="mailto:investors@smartly.ventures">Investor enquiries</a>
+      <a class="btn-text" href="mailto:investors@smartlylabs.ai">Investor access</a>
     </div>
+    <p class="sr d4" style="margin-top:28px;font-family:'DM Mono',monospace;font-size:12px;color:var(--ink3);letter-spacing:.02em;line-height:1.7">Every deployment generates signal.<br/>Every signal improves the system.</p>
   </div>
-  <!-- 3 stats — each unique, none repeated later -->
-  <div class="hero-stats">
-    <div class="hstat">
-      <div class="hstat-val">1.4B</div>
-      <div class="hstat-lbl">People. The market AI cannot afford to ignore.</div>
-    </div>
-    <div class="hstat">
-      <div class="hstat-val">Live</div>
-      <div class="hstat-lbl">Infrastructure deployed. Systems improving in real time.</div>
-    </div>
-    <div class="hstat">
-      <div class="hstat-val">Scaling</div>
-      <div class="hstat-lbl">Selective round. Active conversations. <a href="mailto:investors@smartly.ventures">Talk to us →</a></div>
+  <div class="signal-strip">
+    <div class="sig-pre">Access is the bottleneck in AI. We turned it into infrastructure.</div>
+    <div class="sig-grid">
+      <div class="sig sr d1">
+        <div class="sig-val">500K+</div>
+        <div class="sig-lbl">Developer ecosystem reach</div>
+        <div class="sig-sub">Built through years of open-source infrastructure.</div>
+      </div>
+      <div class="sig sr d2">
+        <div class="sig-val">Live</div>
+        <div class="sig-lbl"><a href="https://infra.smartlylabs.ai" target="_blank">infra.smartlylabs.ai</a></div>
+        <div class="sig-sub">Live operational systems, intelligence tracks, evaluation workflows, and operational memory infrastructure running now.</div>
+        <div class="sig-proof">event_log · intelligence tracks · contributor workflows · evaluation systems</div>
+      </div>
+      <div class="sig sr d3">
+        <div class="sig-val">Compounding</div>
+        <div class="sig-lbl">Operational intelligence</div>
+        <div class="sig-sub">Improving continuously through deployment, validation, and contributor feedback loops.</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ── 01 WHAT THIS IS ── -->
+<!-- 01 WHAT -->
 <section class="sec sec-w" id="what">
   <div class="wi">
-    <p class="t-label sr">01 / What this is</p>
     <div class="g2">
       <div class="sr">
-        <h2 class="t-xl" style="max-width:480px;margin-bottom:24px">
-          Most AI is built in controlled environments.
-          <span class="it"><br/>We build where complexity is the default.</span>
+        <span class="t-kicker">What this is</span>
+        <h2 class="t-xl" style="margin-bottom:22px">
+          Most AI companies<br/>build models.<br/>
+          <span class="it">We build systems<br/>that learn from deployment.</span>
         </h2>
-        <p class="t-body">The assumption in most AI development is a clean, English-speaking, app-native user. We have never had that luxury. It makes our systems more robust.<br/><br/>Most AI systems are trained for ideal conditions. <strong>Ours are forced to survive reality.</strong><br/><br/>That reality is becoming the new benchmark.<br/><br/>Built by operators who spent a decade scaling developer ecosystems before turning that distribution into AI infrastructure.</p>
+        <p class="t-body">
+          Most AI infrastructure is optimized for controlled environments. Clean inputs. Predictable behavior. Simulated evaluation.<br/><br/>
+          That is not how the real world works.<br/><br/>
+          <strong>Every deployment generates signal. Every interaction becomes intelligence. Every contributor improves the system.</strong><br/><br/>
+          This is not prompt engineering. This is operational intelligence infrastructure.<br/><br/>
+          <strong>India is not an edge case. It is the proving ground for the next generation of AI systems.</strong>
+        </p>
       </div>
       <div class="sr d1">
         <div class="ilist">
-          <div class="iitem">Fragmented markets</div>
-          <div class="iitem">Multilingual users</div>
-          <div class="iitem">Low-trust systems</div>
-          <div class="iitem">High-volume, real-world usage</div>
+          <div class="iitem">Multilingual environments</div>
+          <div class="iitem">Real-world validation</div>
+          <div class="iitem">Contributor intelligence loops</div>
+          <div class="iitem">Continuous deployment</div>
+          <div class="iitem">Operational memory systems</div>
+          <div class="iitem">Live feedback infrastructure</div>
         </div>
-        <p class="t-lg" style="margin-top:28px">
-          India is not an edge case.<br/>
-          <span style="font-weight:300;font-style:italic;color:var(--ink2)">It is the proving ground.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 FEEDBACK LOOP -->
+<section class="sec sec-t" id="thesis">
+  <div class="wi">
+    <div class="g2">
+      <div class="sr">
+        <span class="t-kicker">The feedback loop</span>
+        <h2 class="t-xl" style="margin-bottom:22px">
+          The future advantage<br/>in AI is not the model.<br/>
+          <span class="dim">It is the feedback loop.</span>
+        </h2>
+        <p class="t-body">
+          Most AI systems stop at generation. Ours continuously improve through operational usage.<br/><br/>
+          We do not separate users, contributors, evaluations, and intelligence generation. <strong>They are part of the same system.</strong><br/><br/>
+          As the infrastructure scales, the intelligence layer compounds.<br/><br/>
+          This is not iteration speed. This is compounding advantage.
         </p>
       </div>
+      <div class="sr d1">
+        <div class="flow-wrap">
+          <div class="flow-node"><span>Build</span><span class="flow-node-tag">initiate</span></div>
+          <div class="flow-arr">↓</div>
+          <div class="flow-node"><span>Deploy</span><span class="flow-node-tag">release</span></div>
+          <div class="flow-arr">↓</div>
+          <div class="flow-node"><span>Capture Signal</span><span class="flow-node-tag">event_log</span></div>
+          <div class="flow-arr">↓</div>
+          <div class="flow-node"><span>Validate</span><span class="flow-node-tag">eval loop</span></div>
+          <div class="flow-arr">↓</div>
+          <div class="flow-node"><span>Improve</span><span class="flow-node-tag">reinforce</span></div>
+          <div class="flow-arr">↓</div>
+          <div class="flow-node end"><span>Compound</span><span class="flow-node-tag" style="color:rgba(12,12,11,.5)">∞</span></div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
-
-<!-- ── 02 APPROACH ── -->
-<section class="sec sec-t" id="approach">
-  <div class="wi">
-    <p class="t-label sr">02 / Our approach</p>
-    <h2 class="t-xl sr" style="max-width:640px;margin-bottom:40px">
-      Most AI labs simulate deployment.
-      <span class="dim"> We treat deployment as the only environment that matters.</span>
-    </h2>
-    <div class="flow sr d1">
-      <div class="fstep"><span class="f-n">01</span><span class="f-name">Build</span><span class="f-arr">›</span></div>
-      <div class="fstep"><span class="f-n">02</span><span class="f-name">Deploy</span><span class="f-arr">›</span></div>
-      <div class="fstep"><span class="f-n">03</span><span class="f-name">Observe</span><span class="f-arr">›</span></div>
-      <div class="fstep"><span class="f-n">04</span><span class="f-name">Retrain</span><span class="f-arr">›</span></div>
-      <div class="fstep"><span class="f-n">05</span><span class="f-name">Scale</span></div>
-    </div>
-    <p class="t-lg sr d2" style="max-width:520px;margin-bottom:24px">This is not iteration speed. <strong>This is compounding advantage.</strong><br/><span style="font-weight:300;color:var(--ink2)">As AI shifts from model performance to real-world deployment, advantage moves to those who control live usage.</span></p>
     <div class="gnotes sr d2">
-      <div class="gnote">Live usage replaces the lab</div>
-      <div class="gnote">Every deployment generates product and training signal</div>
-      <div class="gnote">Distribution native, not acquired</div>
+      <div class="gnote">Live usage replaces the lab as the evaluation environment</div>
+      <div class="gnote">Every deployment generates product signal and intelligence signal simultaneously</div>
+      <div class="gnote">Distribution is native, not acquired — built into the infrastructure from day one</div>
     </div>
   </div>
 </section>
 
-<!-- ── 03 BUILDING ── -->
-<section class="sec sec-w" id="build">
+<!-- 03 INFRASTRUCTURE -->
+<section class="sec sec-w" id="infra">
   <div class="wi">
-    <p class="t-label sr">03 / What we're building</p>
-    <h2 class="t-xl sr" style="max-width:560px;margin-bottom:12px">
-      Infrastructure layer<br/>for AI-native work.
-    </h2>
-    <p class="t-body sr d1" style="margin-bottom:0">Every system we build runs on a shared distribution layer built over a decade: 500K+ developers, live users, and real workflows from day one. No cold start. No simulated validation.</p>
+    <div class="sr" style="margin-bottom:28px">
+      <span class="t-kicker">Infrastructure</span>
+      <h2 class="t-xl" style="margin-bottom:14px">Operational intelligence infrastructure<br/>for real-world AI deployment.</h2>
+      <p class="t-body">
+        The infrastructure layer is already running. Contributors log into live systems, participate in evaluation workflows, improve agent behavior, and generate deployment feedback across real-world environments.<br/><br/>
+        Teams and companies building on Smartly gain access to deployment infrastructure, evaluation systems, and contributor intelligence workflows from day one.
+      </p>
+      <p class="t-body sr" style="margin-top:20px;padding-top:20px;border-top:1px solid var(--line);color:var(--ink);font-weight:500">
+        The system becomes more valuable as deployment activity, evaluation throughput, and operational usage increase.
+      </p>
+    </div>
+    <div class="infra-visual sr d1">
+      <div class="infra-visual-header">
+        <div class="infra-visual-dot" style="background:#ef4444"></div>
+        <div class="infra-visual-dot" style="background:#f59e0b;margin-left:4px"></div>
+        <div class="infra-visual-dot" style="background:#22c55e;margin-left:4px"></div>
+        <span class="infra-visual-title">smartly infra os · operational view</span>
+        <span style="margin-left:auto;font-family:'DM Mono',monospace;font-size:9px;color:#22c55e;letter-spacing:.04em">● LIVE</span>
+      </div>
+      <div class="infra-visual-body">
+        <svg viewBox="0 0 520 140" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+          <defs>
+            <marker id="a2" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+              <path d="M0,0 L0,5 L5,2.5 z" fill="#353330"/>
+            </marker>
+          </defs>
+          <text x="10" y="24" font-family="DM Mono,monospace" font-size="8" fill="#4f4c49" letter-spacing=".5">CONTRIBUTORS</text>
+          <text x="10" y="62" font-family="DM Mono,monospace" font-size="8" fill="#4f4c49" letter-spacing=".5">INTELLIGENCE TRACKS</text>
+          <text x="10" y="100" font-family="DM Mono,monospace" font-size="8" fill="#4f4c49" letter-spacing=".5">OPERATIONAL MEMORY</text>
+          <text x="10" y="132" font-family="DM Mono,monospace" font-size="8" fill="#4f4c49" letter-spacing=".5">AGENT RUNTIME</text>
+          <circle cx="130" cy="18" r="7" fill="#161513" stroke="#353330" stroke-width="1"/>
+          <circle cx="152" cy="14" r="7" fill="#161513" stroke="#353330" stroke-width="1"/>
+          <circle cx="174" cy="20" r="7" fill="#161513" stroke="#353330" stroke-width="1"/>
+          <circle cx="196" cy="12" r="7" fill="#161513" stroke="#353330" stroke-width="1"/>
+          <circle cx="218" cy="18" r="7" fill="#161513" stroke="#353330" stroke-width="1"/>
+          <circle cx="240" cy="15" r="7" fill="#161513" stroke="#353330" stroke-width="1"/>
+          <circle cx="262" cy="20" r="7" fill="#161513" stroke="#353330" stroke-width="1"/>
+          <circle cx="284" cy="13" r="7" fill="#ede9e4" stroke="#ede9e4" stroke-width="1"/>
+          <rect x="130" y="50" width="52" height="18" rx="3" fill="#161513" stroke="#252321" stroke-width="1"/>
+          <text x="156" y="62" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#8a8480">review</text>
+          <rect x="188" y="50" width="52" height="18" rx="3" fill="#161513" stroke="#252321" stroke-width="1"/>
+          <text x="214" y="62" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#8a8480">validate</text>
+          <rect x="246" y="50" width="52" height="18" rx="3" fill="#161513" stroke="#252321" stroke-width="1"/>
+          <text x="272" y="62" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#8a8480">evaluate</text>
+          <rect x="304" y="50" width="52" height="18" rx="3" fill="#161513" stroke="#252321" stroke-width="1"/>
+          <text x="330" y="62" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#8a8480">localize</text>
+          <rect x="130" y="88" width="260" height="18" rx="3" fill="#1a1917" stroke="#252321" stroke-width="1"/>
+          <rect x="130" y="88" width="156" height="18" rx="3" fill="#252321" stroke="none"/>
+          <text x="260" y="100" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#4f4c49">event_log · operational memory · 60%</text>
+          <rect x="130" y="120" width="58" height="16" rx="3" fill="#ede9e4" stroke="none"/>
+          <text x="159" y="131" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#0c0c0b">agent_01</text>
+          <rect x="194" y="120" width="58" height="16" rx="3" fill="#161513" stroke="#252321" stroke-width="1"/>
+          <text x="223" y="131" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#4f4c49">agent_02</text>
+          <rect x="258" y="120" width="58" height="16" rx="3" fill="#161513" stroke="#252321" stroke-width="1"/>
+          <text x="287" y="131" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#4f4c49">agent_03</text>
+          <rect x="322" y="120" width="68" height="16" rx="3" fill="#161513" stroke="#353330" stroke-width="1" stroke-dasharray="3,2"/>
+          <text x="356" y="131" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#353330">+ deploy</text>
+          <line x1="196" y1="26" x2="180" y2="48" stroke="#252321" stroke-width="1" marker-end="url(#a2)"/>
+          <line x1="240" y1="23" x2="230" y2="48" stroke="#252321" stroke-width="1" marker-end="url(#a2)"/>
+          <line x1="284" y1="21" x2="295" y2="48" stroke="#353330" stroke-width="1" marker-end="url(#a2)"/>
+          <line x1="210" y1="68" x2="210" y2="86" stroke="#252321" stroke-width="1" marker-end="url(#a2)"/>
+          <line x1="210" y1="106" x2="210" y2="118" stroke="#252321" stroke-width="1" marker-end="url(#a2)"/>
+        </svg>
+      </div>
+    </div>
     <div class="cards sr d2">
       <div class="card">
-        <div class="c-tag">Agent systems</div>
-        <div class="c-name">Operate, not demo</div>
-        <div class="c-body">Systems that operate inside real workflows — not isolated interfaces or polished demos.</div>
+        <span class="c-tag">Agent runtime</span>
+        <div class="c-name">Agent Runtime Infrastructure</div>
+        <div class="c-body">Multi-agent operational systems designed for live environments, not demos. Agents improve through live operational usage instead of isolated prompt iteration.</div>
       </div>
       <div class="card">
-        <div class="c-tag">Interfaces</div>
-        <div class="c-name">Communication-native</div>
-        <div class="c-body">Chat, voice, messaging. Built for how people in emerging markets actually communicate.</div>
+        <span class="c-tag">Memory layer</span>
+        <div class="c-name">Operational Memory Layer</div>
+        <div class="c-body">Every interaction, contribution, and deployment becomes structured intelligence.</div>
       </div>
       <div class="card">
-        <div class="c-tag">Deployment</div>
-        <div class="c-name">Real-world pipelines</div>
-        <div class="c-body">Shipping across fragmented markets, languages, and network conditions.</div>
+        <span class="c-tag">Evaluation</span>
+        <div class="c-name">Evaluation Infrastructure</div>
+        <div class="c-body">Human and agent validation loops continuously improve system quality.</div>
       </div>
       <div class="card">
-        <div class="c-tag">Disclosure</div>
-        <div class="c-name">Some systems are visible</div>
-        <div class="c-body">Most are already in use. We announce systems when performance becomes undeniable.</div>
+        <span class="c-tag">Contributor network</span>
+        <div class="c-name">Contributor Intelligence Network</div>
+        <div class="c-body">A distributed contributor ecosystem improving AI systems through real operational usage.</div>
       </div>
     </div>
+    <p class="t-sm sr d3" style="margin-top:16px">Public systems launch when operational performance becomes undeniable.</p>
   </div>
 </section>
 
-<!-- ── 04 DISTRIBUTION ── -->
-<section class="sec sec-t" id="distribution">
+<!-- 04 TRACKS -->
+<section class="sec sec-t" id="tracks">
   <div class="wi">
-    <p class="t-label sr">04 / Distribution</p>
-    <h2 class="t-xl sr" style="max-width:600px;margin-bottom:0">
-      Access is the bottleneck in AI.
-      <span class="dim"><br/>We turned it into our advantage.</span>
-    </h2>
-    <div class="dnums sr d1">
-      <div class="dnum">
-        <div class="d-val">500K+</div>
-        <div class="d-lbl">Developers in the distribution layer</div>
+    <div class="sr" style="margin-bottom:8px">
+      <span class="t-kicker">Intelligence Tracks</span>
+      <h2 class="t-xl" style="margin-bottom:10px">Distributed intelligence infrastructure.</h2>
+      <p class="t-body" style="max-width:480px">Contributors are part of the operational feedback loop.<br/><br/>As contributors improve systems, their operational reputation, evaluation history, and deployment impact compound across the infrastructure.</p>
+    </div>
+    <div class="tracks-grid sr d1">
+      <div class="track">
+        <span class="tr-n">Track 01</span>
+        <div class="tr-name">Review Agents</div>
+        <div class="tr-body">Evaluate live agent behavior and improve operational quality.</div>
+        <span class="tr-arrow">→</span>
       </div>
-      <div class="dnum">
-        <div class="d-val">16K+</div>
-        <div class="d-lbl">Builders entering the feedback loop in 2026</div>
+      <div class="track">
+        <span class="tr-n">Track 02</span>
+        <div class="tr-name">Improve Responses</div>
+        <div class="tr-body">Strengthen reasoning, accuracy, and workflow reliability.</div>
+        <span class="tr-arrow">→</span>
       </div>
-      <div class="dnum">
-        <div class="d-val">Weeks</div>
-        <div class="d-lbl">To live validation, not simulated traction</div>
+      <div class="track">
+        <span class="tr-n">Track 03</span>
+        <div class="tr-name">Localization Tasks</div>
+        <div class="tr-body">Improve multilingual deployment quality across Indian contexts.</div>
+        <span class="tr-arrow">→</span>
+      </div>
+      <div class="track">
+        <span class="tr-n">Track 04</span>
+        <div class="tr-name">Real-world Validation</div>
+        <div class="tr-body">Test systems against actual operational environments.</div>
+        <span class="tr-arrow">→</span>
+      </div>
+      <div class="track full">
+        <span class="tr-n">Track 05</span>
+        <div class="tr-name">Advanced Data Tasks</div>
+        <div class="tr-body">Contribute to structured intelligence generation and evaluation pipelines.</div>
+        <span class="tr-arrow">→</span>
       </div>
     </div>
-    <p class="t-body sr d2" style="max-width:580px;margin-top:44px">
-      We are building for <strong>1.4 billion people</strong>, not as a future market, but as a present system.<br/><br/>Every product we ship is immediately exposed to real usage, real constraints, and real scale.<br/><br/>Every live deployment becomes a feedback loop: builders test, users respond, systems improve.<br/><br/><strong>This is not distribution as growth. This is distribution as infrastructure.</strong><br/><br/>We don’t separate users, builders, and training data. They are part of the same system.<br/><br/><span style="display:block;font-style:italic">What started as one of the world’s largest developer communities now functions as a live deployment and improvement layer for everything we build.</span>
-    </p>
   </div>
 </section>
 
-<!-- ── 05 SHIPPED ── -->
-<section class="sec sec-w" id="shipped">
+<!-- 05 ACCESS -->
+<section class="sec sec-w" id="access">
   <div class="wi">
-    <p class="t-label sr">05 / What we've shipped</p>
-    <h2 class="t-xl sr" style="max-width:480px;margin-bottom:12px">
-      Core infrastructure deployed.<br/>Multiple systems in active environments.
-    </h2>
-    <p class="t-body sr d1" style="margin-bottom:36px">The infrastructure layer is live. Multiple products are deployed to real users, generating continuous signal from live environments. The work is already in motion. Public announcements follow proof, not intention.</p>
-    <div class="ilist sr d2">
-      <div class="iitem">
-        <div>
-          Distribution Infrastructure
-          <span class="i-meta">The layer that connects AI systems to real users at scale</span>
-        </div>
-        <span class="i-tag live">Live</span>
-      </div>
-      <div class="iitem">
-        <div>
-          Product 01
-          <span class="i-meta">Deployed in a controlled environment</span>
-        </div>
-        <span class="i-tag" style="color:#92400e">Beta</span>
-      </div>
-      <div class="iitem">
-        <div>
-          Product 02
-          <span class="i-meta">Deployed in a controlled environment</span>
-        </div>
-        <span class="i-tag" style="color:#92400e">Beta</span>
-      </div>
+    <div class="sr" style="margin-bottom:8px">
+      <span class="t-kicker">Access</span>
+      <h2 class="t-xl" style="margin-bottom:10px">Access to the infrastructure<br/>is currently limited.</h2>
+      <p class="t-body" style="max-width:460px">The system is currently being opened selectively to contributors, operators, researchers, and early partners. GSSoC 2026 contributors — 28,000+ strong, including agents running on Smartly infrastructure for the India AI Track — are the first activation layer.</p>
     </div>
-    <p class="t-sm sr d3" style="margin-top:16px">
-      Product names and pages launch publicly when the numbers are ready to speak.
-      <a href="mailto:hello@smartly.ventures">Request early access →</a>
-    </p>
-  </div>
-</section>
-
-<!-- ── 06 PHILOSOPHY — dark ── -->
-<section class="manifesto">
-  <div class="mf-inner">
-    <p class="mf-big sr">
-      AI that fails under<br/>
-      <span class="ghost">real conditions</span><br/>
-      was never<br/>
-      ready.
-    </p>
-    <div class="mf-trio sr d1">
-      <div class="mf-cell">
-        <div class="mf-l">Input</div>
-        <div class="mf-v"><strong>Imperfect.</strong> Incomplete queries, inconsistent data, edge cases as the norm.</div>
-      </div>
-      <div class="mf-cell">
-        <div class="mf-l">Behavior</div>
-        <div class="mf-v"><strong>Unpredictable.</strong> Real usage patterns that no simulation captures.</div>
-      </div>
-      <div class="mf-cell">
-        <div class="mf-l">Environment</div>
-        <div class="mf-v"><strong>Constrained.</strong> Low bandwidth, multilingual context, fragmented infrastructure.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── 07 ACCESS ── -->
-<section class="sec sec-t" id="access">
-  <div class="wi">
-    <p class="t-label sr">07 — Access</p>
-    <h2 class="t-xl sr" style="max-width:460px;margin-bottom:12px">
-      We are selective<br/>about who we work with.
-    </h2>
-    <p class="t-body sr d1" style="margin-bottom:0;max-width:420px">We are in active conversations with a small set of investors who understand that emerging markets are not secondary markets. They are where the next AI infrastructure layer will be proven.</p>
-    <div class="acs sr d2">
+    <div class="acs sr d1">
       <div class="ac">
-        <div class="ac-for">For investors</div>
-        <div class="ac-title">Selective seed conversations</div>
-        <div class="ac-body">We operate one of the largest live AI distribution environments globally. Infrastructure is deployed. Systems are improving through real usage. The visible surface is only a fraction of the company being built.</div>
-        <a class="ac-link" href="mailto:investors@smartly.ventures">
-          investors@smartly.ventures
+        <div class="ac-for">For GSSoC Contributors</div>
+        <div class="ac-title">Enter the live infrastructure</div>
+        <div class="ac-body">GSSoC contributors participating in the India AI and Agents track can directly access Smartly operational systems and intelligence workflows.<br/><br/>Access includes:<br/>— intelligence tracks<br/>— evaluation environments<br/>— contributor workflows<br/>— live operational systems</div>
+        <a class="ac-cta" href="https://infra.smartlylabs.ai" target="_blank">
+          Join operational tracks
           <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8L8 2M8 2H3.5M8 2V6.5"/></svg>
         </a>
       </div>
       <div class="ac">
-        <div class="ac-for">Early access</div>
-        <div class="ac-title">Enter the live system</div>
-        <div class="ac-body">We work with people building, deploying, or operating in real environments, not sandbox testers. If that is you, reach out.</div>
-        <!-- EARLY ACCESS CTA → general email -->
-        <a class="ac-link" href="mailto:hello@smartly.ventures">
+        <div class="ac-for">For Researchers, Builders &amp; Operators</div>
+        <div class="ac-title">Request infrastructure access</div>
+        <div class="ac-body">We are selectively onboarding external operators, researchers, startups, and AI-native teams building on real-world deployment and evaluation infrastructure.<br/><br/>The visible surface is only a fraction of the deployment infrastructure being built.</div>
+        <a class="ac-cta" href="mailto:hello@smartlylabs.ai">
           Request access
           <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8L8 2M8 2H3.5M8 2V6.5"/></svg>
         </a>
@@ -658,38 +586,224 @@ footer {
   </div>
 </section>
 
-<!-- ── CLOSING ── -->
-<section class="closing">
-  <div class="closing-bg"></div>
-  <div class="closing-inner">
-    <p class="closing-big sr">
-      The market<br/>
-      <span class="ghost">was always</span><br/>
-      here.<br/>
-      The feedback loop<br/>
-      <span class="ghost">belongs to whoever builds now.</span>
-    </p>
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="mf-inner">
+    <div class="mf-layout">
+      <div class="sr">
+        <p class="mf-big">
+          AI that fails<br/>
+          <span class="ghost">under real</span><br/>
+          conditions<br/>
+          <span class="ghost">was never ready.</span>
+        </p>
+      </div>
+      <div class="mf-right sr d1">
+        <div class="mf-cell">
+          <span class="mf-lbl">Input</span>
+          <div class="mf-v"><strong>Incomplete.</strong> Real-world environments are inconsistent by default.</div>
+        </div>
+        <div class="mf-cell">
+          <span class="mf-lbl">Behavior</span>
+          <div class="mf-v"><strong>Unpredictable.</strong> Operational usage creates edge cases no benchmark captures.</div>
+        </div>
+        <div class="mf-cell">
+          <span class="mf-lbl">Intelligence</span>
+          <div class="mf-v"><strong>Compounding.</strong> Every deployment improves the system.</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ── FOOTER ── -->
+<!-- CLOSING -->
+<section class="closing">
+  <div class="closing-bg"></div>
+  <div class="closing-inner">
+    <div class="sr">
+      <p class="closing-big">
+        Every deployment<br/>improves the system.<br/><br/>
+        Every contributor<br/><span class="ghost">strengthens</span><br/>the infrastructure.
+      </p>
+    </div>
+    <div class="closing-right sr d1">
+      <p class="closing-statement">The future of AI belongs to systems that learn from reality.</p>
+      <p class="closing-foot">smartlylabs.ai</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
   <div>
-    <div class="f-brand">Smartly Labs</div>
-    <div class="f-sub">Intelligence for emerging markets · India · 2026</div>
+    <div class="f-brand">
+      <img class="f-brand-img" src="Logos-3.png" alt=""/>
+      Smartly Labs
+    </div>
+    <div class="f-sub">Operational Intelligence Infrastructure · India · 2026</div><div class="f-sub" style="margin-top:2px">Built on top of one of the largest open-source contributor ecosystems in the region.</div>
   </div>
   <div class="f-links">
-    <a class="f-link-inv" href="mailto:investors@smartly.ventures">investors@smartly.ventures</a>
-    <a class="f-link" href="mailto:hello@smartly.ventures">Early access</a>
-    <a class="f-link" href="mailto:hello@smartly.ventures">hello@smartly.ventures</a>
+    <span class="f-link" onclick="showPage('cohort')">Founding Systems Cohort →</span>
+    <a class="f-link" href="mailto:hello@smartlylabs.ai">hello@smartlylabs.ai</a>
   </div>
 </footer>
 
+</div><!-- /page-main -->
+
+
+<!-- PAGE: COHORT -->
+<div id="page-cohort" class="page">
+
+<div class="ch-hero">
+  <div class="ch-inner">
+    <h1 class="ch-h1">Built by operators,<br/>systems engineers,<br/>and infrastructure builders.</h1>
+    <p class="ch-sub">Smartly Labs is being shaped by a distributed cohort of researchers, infrastructure engineers, open-source contributors, and AI systems builders focused on operational intelligence infrastructure.<br/><br/>Most members have spent years building production systems across AI, distributed infrastructure, cybersecurity, cloud systems, orchestration frameworks, and real-world deployment environments.</p>
+  </div>
+</div>
+
+<span class="ch-sec-lbl">Core Team</span>
+<div class="ch-members">
+  <div class="member">
+    <div>
+      <div class="m-name">Anubha<br/>Maneshwar</div>
+      <div class="m-role">Founder · Ecosystem Infrastructure · Operational Intelligence</div>
+    </div>
+    <div>
+      <p class="m-bio">Founding Director of GirlScript Foundation, where her initiatives have impacted more than 1,000,000 learners globally through technology and employability programs. GirlScript was recognized among the Top 2 Upskill &amp; Reskill Programs globally by Women Tech Network (USA).<br/><br/>Featured in Forbes Asia 30 Under 30 (Social Entrepreneurs) and recognized by the Society of Women Engineers Magazine, ElasticSearch Cause Awards, Booking.com Technology Playmaker Awards, and Indian Women Leadership Excellence Awards.<br/><br/>Has spoken at TEDx, GITEX Dubai, TiECON Silicon Valley, PyCon US, and Microsoft Build. Mentor across Mozilla Open Leaders, Smart India Hackathon, and the Rajeev Circle Fellowship in Silicon Valley.</p>
+      <p class="m-signal"><span>Forbes Asia 30U30</span><span>GirlScript Foundation</span><span>Global Ecosystems</span><span>Deployment Infrastructure</span></p>
+      <div class="m-links">
+        <a class="m-link" href="#">LinkedIn</a>
+        <a class="m-link" href="#">Talks</a>
+        <a class="m-link" href="#">Foundation</a>
+      </div>
+    </div>
+  </div>
+  <div class="member">
+    <div>
+      <div class="m-name">Ojas</div>
+      <div class="m-role">Operations Infrastructure · Systems Execution · Deployment</div>
+    </div>
+    <div>
+      <p class="m-bio">Co-Founder at Smartly Ventures and Head of Operations at GirlScript Foundation, focused on scaling operational systems, deployment workflows, contributor infrastructure, and execution environments.<br/><br/>Previously worked across Web3 infrastructure, developer tooling, and production engineering systems through Web3Conf India, Dehidden, and HCL Technologies.</p>
+      <p class="m-signal"><span>GirlScript Foundation</span><span>Web3Conf India</span><span>Operations Infrastructure</span><span>Deployment Systems</span></p>
+      <div class="m-links">
+        <a class="m-link" href="#">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<span class="ch-sec-lbl">Founding Systems Cohort</span>
+<div class="ch-members">
+  <div class="member">
+    <div>
+      <div class="m-name">Soham<br/>Bhoir</div>
+      <div class="m-role">AI Systems · Cybersecurity · Quantum ML</div>
+    </div>
+    <div>
+      <p class="m-bio">AI systems engineer focused on cybersecurity, quantum machine learning, and production infrastructure. Published multiple research papers across dark web intelligence, quantum transfer learning, and AI systems.<br/><br/>Recognized among the top 1% engineers at Oracle through the Pace Setter Award. Built and deployed systems recognized by Mumbai Police and multiple national technology competitions.</p>
+      <p class="m-signal"><span>Oracle</span><span>Quantum ML</span><span>Cybersecurity</span><span>Production Systems</span><span>Research</span></p>
+      <div class="m-links">
+        <a class="m-link" href="#">LinkedIn</a>
+        <a class="m-link" href="#">GitHub</a>
+        <a class="m-link" href="#">Portfolio</a>
+      </div>
+    </div>
+  </div>
+  <div class="member">
+    <div>
+      <div class="m-name">Aniruddha</div>
+      <div class="m-role">Backend Infrastructure · Cloud Systems · AI Engineering</div>
+    </div>
+    <div>
+      <p class="m-bio">Backend and AI systems engineer focused on production infrastructure, cloud systems, payments, and distributed networking. Led backend and cloud engineering across AI SaaS systems, automation pipelines, database migrations, and production deployments.<br/><br/>Contributor to Protocol Labs' py-libp2p networking ecosystem and multiple open-source infrastructure systems.</p>
+      <p class="m-signal"><span>Cloud Infrastructure</span><span>Distributed Systems</span><span>Protocol Labs</span><span>Backend</span><span>OSS</span></p>
+      <div class="m-links">
+        <a class="m-link" href="#">LinkedIn</a>
+        <a class="m-link" href="#">GitHub</a>
+      </div>
+    </div>
+  </div>
+  <div class="member">
+    <div>
+      <div class="m-name">Keerthivasan<br/>S V</div>
+      <div class="m-role">Autonomous Systems · Distributed Infrastructure · AI Orchestration</div>
+    </div>
+    <div>
+      <p class="m-bio">Infrastructure and autonomous systems engineer focused on distributed AI systems, orchestration infrastructure, edge AI, low-latency systems, and production deployment.<br/><br/>Built multi-agent research systems, enterprise AI voice infrastructure, semantic orchestration frameworks, edge AI systems, and low-latency trading infrastructure. Contributor across Protocol Labs ecosystem.</p>
+      <p class="m-signal"><span>Multi-agent Systems</span><span>Edge AI</span><span>Protocol Labs</span><span>OSS</span><span>Low-latency Infra</span></p>
+      <div class="m-links">
+        <a class="m-link" href="#">LinkedIn</a>
+        <a class="m-link" href="#">GitHub</a>
+        <a class="m-link" href="#">PyPI</a>
+      </div>
+    </div>
+  </div>
+  <div class="member">
+    <div>
+      <div class="m-name">Neha<br/>Kumari</div>
+      <div class="m-role">Web3 Infrastructure · Agentic Systems · P2P &amp; Decentralized Infra</div>
+    </div>
+    <div>
+      <p class="m-bio">Full-stack engineer building at the intersection of agentic AI systems, Web3 infrastructure, and decentralized P2P networks. Protocol Labs Dev Guild contributor across 5 consecutive cohorts (PLDG 2–6). Maintainer at Storacha, building MCP-integrated and LLM-powered agentic tools.<br/><br/>4× hackathon award winner — Rachax402 ($504, PLDG Frontiers), GhostLock ($750, Dcipher Loops Hacker House), LLMesh (3rd, Protocol Labs × AI Hackathon). Published author. 4 research works.</p>
+      <p class="m-signal"><span>Protocol Labs PLDG 2–6</span><span>Storacha</span><span>Agentic Systems</span><span>Web3 Infra</span><span>P2P Networks</span></p>
+      <div class="m-links">
+        <a class="m-link" href="https://www.linkedin.com/in/neha-kumari711" target="_blank">LinkedIn</a>
+        <a class="m-link" href="https://github.com/Nkovaturient" target="_blank">GitHub</a>
+        <a class="m-link" href="https://nehakumari711.netlify.app/neha_kumari_portfolio" target="_blank">Portfolio</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ch-closing">
+  <div class="ch-closing-inner">
+    <p class="ch-closing-big">
+      Operational intelligence<br/>is not built by isolated models.<br/><br/>
+      <span class="dim">It is built by systems, contributors,<br/>and infrastructure that compound together.</span>
+    </p>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <div class="f-brand">
+      <img class="f-brand-img" src="Logos-3.png" alt=""/>
+      Smartly Labs
+    </div>
+  </div>
+  <div class="f-links">
+    <span class="f-link" onclick="showPage('main')">← Main site</span>
+    <a class="f-link" href="mailto:hello@smartlylabs.ai">hello@smartlylabs.ai</a>
+  </div>
+</footer>
+
+</div><!-- /page-cohort -->
+
 <script>
-const o = new IntersectionObserver(es => {
-  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); o.unobserve(e.target); } });
-}, { threshold: .06, rootMargin: '0px 0px -16px 0px' });
-document.querySelectorAll('.sr').forEach(el => o.observe(el));
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.getElementById('nav-main').style.display=name==='main'?'flex':'none';
+  document.getElementById('nav-cohort').style.display=name==='cohort'?'flex':'none';
+  window.scrollTo(0,0);
+  initSR();
+}
+function initSR(){
+  const els=document.querySelectorAll('.page.active .sr:not(.on)');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);}});
+  },{threshold:.04,rootMargin:'0px 0px -8px 0px'});
+  els.forEach(el=>obs.observe(el));
+}
+function goTo(id){
+  if(document.getElementById('page-main').classList.contains('active')){
+    const el=document.getElementById(id);
+    if(el)setTimeout(()=>el.scrollIntoView({behavior:'smooth'}),10);
+  }
+  return false;
+}
+initSR();
 </script>
 </body>
 </html>
