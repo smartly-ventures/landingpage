@@ -1,563 +1,1655 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Smartly Labs — The composable intelligence layer for production AI</title>
-<meta name="description" content="Smartly is the composable intelligence layer for production AI — learning infrastructure that captures deployment signals, human judgment and outcomes to improve what ships next."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  background:#0c0c0b;color:#ede9e4;
-  font-family:'Plus Jakarta Sans',system-ui,sans-serif;
-  font-size:16px;line-height:1.6;
-  overflow-x:hidden;-webkit-font-smoothing:antialiased;
-}
-:root{
-  --ink:#ede9e4;
-  --ink2:#c8c4bf;
-  --ink3:#9b9793;
-  --ink4:#726e6b;
-  --line:#333130;
-  --line2:#272524;
-  --bg:#0c0c0b;
-  --bg2:#111110;
-  --bg3:#161513;
-  --accent:#ff6a3d;
-  --r:8px;
-}
-a{color:inherit}
-.page{display:none}.page.active{display:block}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Smartly Labs — The composable intelligence layer for production AI
+    </title>
+    <meta
+      name="description"
+      content="Smartly is the composable intelligence layer for production AI — learning infrastructure that captures deployment signals, human judgment and outcomes to improve what ships next."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&family=DM+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: #0c0c0b;
+        color: #ede9e4;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+      :root {
+        --ink: #ede9e4;
+        --ink2: #c8c4bf;
+        --ink3: #9b9793;
+        --ink4: #726e6b;
+        --line: #333130;
+        --line2: #272524;
+        --bg: #0c0c0b;
+        --bg2: #111110;
+        --bg3: #161513;
+        --accent: #ff6a3d;
+        --r: 8px;
+      }
+      a {
+        color: inherit;
+      }
+      .page {
+        display: none;
+      }
+      .page.active {
+        display: block;
+      }
 
-.sr{opacity:0;transform:translateY(10px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)}
-.sr.on{opacity:1;transform:none}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.32s}.d4{transition-delay:.46s}.d5{transition-delay:.6s}.d6{transition-delay:.74s}.d7{transition-delay:.88s}.d8{transition-delay:1.02s}
+      .sr {
+        opacity: 0;
+        transform: translateY(10px);
+        transition:
+          opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .sr.on {
+        opacity: 1;
+        transform: none;
+      }
+      .d1 {
+        transition-delay: 0.1s;
+      }
+      .d2 {
+        transition-delay: 0.2s;
+      }
+      .d3 {
+        transition-delay: 0.32s;
+      }
+      .d4 {
+        transition-delay: 0.46s;
+      }
+      .d5 {
+        transition-delay: 0.6s;
+      }
+      .d6 {
+        transition-delay: 0.74s;
+      }
+      .d7 {
+        transition-delay: 0.88s;
+      }
+      .d8 {
+        transition-delay: 1.02s;
+      }
 
-/* NAV */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  height:52px;display:flex;align-items:center;justify-content:space-between;
-  padding:0 32px;
-  background:rgba(12,12,11,.92);
-  border-bottom:1px solid var(--line);
-  backdrop-filter:blur(24px);
-}
-.n-logo{display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none;text-decoration:none}
-.n-logo-img{width:22px;height:22px;object-fit:contain;flex-shrink:0;filter:brightness(10)}
-.n-logo-word{font-size:13px;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
-.n-cta{font-size:12px;font-weight:600;letter-spacing:-.01em;color:#0c0c0b;background:var(--ink);padding:8px 18px;border-radius:99px;text-decoration:none;transition:opacity .15s}
-.n-cta:hover{opacity:.82}
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 32px;
+        background: rgba(12, 12, 11, 0.92);
+        border-bottom: 1px solid var(--line);
+        backdrop-filter: blur(24px);
+      }
+      .n-logo {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        cursor: pointer;
+        user-select: none;
+        text-decoration: none;
+      }
+      .n-logo-img {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+        flex-shrink: 0;
+        filter: brightness(10);
+      }
+      .n-logo-word {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+      }
+      .n-cta {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        color: #0c0c0b;
+        background: var(--ink);
+        padding: 8px 18px;
+        border-radius: 99px;
+        text-decoration: none;
+        transition: opacity 0.15s;
+      }
+      .n-cta:hover {
+        opacity: 0.82;
+      }
 
-/* SHARED TYPE */
-.wi{max-width:920px;margin:0 auto}
-.wi-nar{max-width:680px;margin:0 auto}
-.t-kicker{font-family:'DM Mono',monospace;font-size:11px;font-weight:300;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;display:block}
-.btn-primary{
-  font-size:13px;font-weight:600;letter-spacing:-.01em;
-  color:#0c0c0b;background:var(--ink);
-  padding:12px 24px;border-radius:99px;
-  text-decoration:none;transition:opacity .15s,transform .12s;
-  display:inline-flex;align-items:center;gap:8px;
-}
-.btn-primary:hover{opacity:.85;transform:translateY(-1px)}
-.btn-primary svg{width:9px;height:9px;opacity:.6;flex-shrink:0}
-.btn-text{font-size:13px;font-weight:400;color:var(--ink3);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:1px;transition:color .15s,border-color .15s}
-.btn-text:hover{color:var(--ink2);border-color:var(--ink3)}
+      /* SHARED TYPE */
+      .wi {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .wi-nar {
+        max-width: 680px;
+        margin: 0 auto;
+      }
+      .t-kicker {
+        font-family: "DM Mono", monospace;
+        font-size: 11px;
+        font-weight: 300;
+        color: var(--ink3);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        display: block;
+      }
+      .btn-primary {
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        color: #0c0c0b;
+        background: var(--ink);
+        padding: 12px 24px;
+        border-radius: 99px;
+        text-decoration: none;
+        transition:
+          opacity 0.15s,
+          transform 0.12s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-primary:hover {
+        opacity: 0.85;
+        transform: translateY(-1px);
+      }
+      .btn-primary svg {
+        width: 9px;
+        height: 9px;
+        opacity: 0.6;
+        flex-shrink: 0;
+      }
+      .btn-text {
+        font-size: 13px;
+        font-weight: 400;
+        color: var(--ink3);
+        text-decoration: none;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 1px;
+        transition:
+          color 0.15s,
+          border-color 0.15s;
+      }
+      .btn-text:hover {
+        color: var(--ink2);
+        border-color: var(--ink3);
+      }
 
-/* ============ HERO ============ */
-.hero{
-  position:relative;min-height:100svh;
-  background:var(--bg);
-  display:flex;flex-direction:column;justify-content:center;
-  padding:150px 32px 90px;overflow:hidden;
-  border-bottom:1px solid var(--line);
-}
-.hero-bg{
-  position:absolute;inset:0;z-index:0;
-  background:
-    radial-gradient(ellipse 50% 42% at 50% 8%,rgba(255,106,61,.14) 0%,transparent 58%),
-    radial-gradient(ellipse 40% 50% at 8% 92%,rgba(255,106,61,.05) 0%,transparent 55%),
-    var(--bg);
-  animation:hbg 20s ease-in-out infinite alternate;
-}
-@keyframes hbg{0%{opacity:.65}50%{opacity:1}100%{opacity:.75}}
-.hero-inner{position:relative;z-index:1;max-width:720px;width:100%;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center}
-.hero-mark{width:34px;height:34px;object-fit:contain;filter:brightness(10);opacity:.9;margin-bottom:22px}
-.hero-h1{
-  font-size:clamp(32px,4.6vw,56px);
-  font-weight:800;line-height:1.06;letter-spacing:-.04em;
-  color:var(--ink);max-width:600px;margin:16px 0 18px;
-}
-.hero-sub{font-size:17px;font-weight:300;color:var(--ink2);max-width:480px;line-height:1.65;margin-bottom:36px}
-.hero-btns{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:64px}
+      /* ============ HERO ============ */
+      .hero {
+        position: relative;
+        min-height: 100svh;
+        background: var(--bg);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 150px 32px 90px;
+        overflow: hidden;
+        border-bottom: 1px solid var(--line);
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background:
+          radial-gradient(
+            ellipse 50% 42% at 50% 8%,
+            rgba(255, 106, 61, 0.14) 0%,
+            transparent 58%
+          ),
+          radial-gradient(
+            ellipse 40% 50% at 8% 92%,
+            rgba(255, 106, 61, 0.05) 0%,
+            transparent 55%
+          ),
+          var(--bg);
+        animation: hbg 20s ease-in-out infinite alternate;
+      }
+      @keyframes hbg {
+        0% {
+          opacity: 0.65;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.75;
+        }
+      }
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 720px;
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .hero-mark {
+        width: 34px;
+        height: 34px;
+        object-fit: contain;
+        filter: brightness(10);
+        opacity: 0.9;
+        margin-bottom: 22px;
+      }
+      .hero-h1 {
+        font-size: clamp(32px, 4.6vw, 56px);
+        font-weight: 800;
+        line-height: 1.06;
+        letter-spacing: -0.04em;
+        color: var(--ink);
+        max-width: 600px;
+        margin: 16px 0 18px;
+      }
+      .hero-sub {
+        font-size: 17px;
+        font-weight: 300;
+        color: var(--ink2);
+        max-width: 480px;
+        line-height: 1.65;
+        margin-bottom: 36px;
+      }
+      .hero-btns {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-bottom: 64px;
+      }
 
-/* HERO VISUAL — intelligence feed */
-.feed{
-  width:100%;max-width:420px;text-align:left;
-  background:var(--bg2);border:1px solid var(--line);border-radius:12px;
-  padding:26px 24px;font-family:'DM Mono',monospace;font-size:12px;
-  box-shadow:0 50px 110px -40px rgba(0,0,0,.7);
-}
-.feed-row{display:flex;flex-direction:column;gap:2px;padding:9px 0}
-.feed-lbl{color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;font-size:10px}
-.feed-val{color:var(--ink2);font-size:12px}
-.feed-arrow{color:var(--ink4);font-size:11px;padding:2px 0 2px 2px}
-.feed-strong{color:var(--ink);font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:11px}
-.feed-div{height:1px;background:var(--line2);margin:10px 0}
-.feed-accept{color:var(--accent);font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:12px;text-shadow:0 0 18px rgba(255,106,61,.35)}
-.feed-note{color:var(--ink4);font-size:11px;margin-top:3px}
+      /* HERO VISUAL — intelligence feed */
+      .feed {
+        width: 100%;
+        max-width: 420px;
+        text-align: left;
+        background: var(--bg2);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 26px 24px;
+        font-family: "DM Mono", monospace;
+        font-size: 12px;
+        box-shadow: 0 50px 110px -40px rgba(0, 0, 0, 0.7);
+      }
+      .feed-row {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        padding: 9px 0;
+      }
+      .feed-lbl {
+        color: var(--ink3);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 10px;
+      }
+      .feed-val {
+        color: var(--ink2);
+        font-size: 12px;
+      }
+      .feed-arrow {
+        color: var(--ink4);
+        font-size: 11px;
+        padding: 2px 0 2px 2px;
+      }
+      .feed-strong {
+        color: var(--ink);
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        font-size: 11px;
+      }
+      .feed-div {
+        height: 1px;
+        background: var(--line2);
+        margin: 10px 0;
+      }
+      .feed-accept {
+        color: var(--accent);
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 12px;
+        text-shadow: 0 0 18px rgba(255, 106, 61, 0.35);
+      }
+      .feed-note {
+        color: var(--ink4);
+        font-size: 11px;
+        margin-top: 3px;
+      }
 
-/* ============ STATS STRIP ============ */
-.stats-strip{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:34px 32px}
-.stats-row{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0}
-.stat{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 32px;position:relative}
-.stat:not(:last-child)::after{content:'';position:absolute;right:0;top:2px;bottom:2px;width:1px;background:var(--line)}
-.stat-val{font-size:22px;font-weight:800;letter-spacing:-.03em;color:var(--ink)}
-.stat-lbl{font-family:'DM Mono',monospace;font-size:9.5px;font-weight:300;color:var(--ink3);letter-spacing:.07em;text-transform:uppercase;margin-top:5px}
-.stats-note{text-align:center;font-family:'DM Mono',monospace;font-size:10px;color:var(--ink4);margin-top:18px;letter-spacing:.04em}
+      /* ============ STATS STRIP ============ */
+      .stats-strip {
+        background: var(--bg2);
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 34px 32px;
+      }
+      .stats-row {
+        max-width: 960px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0;
+      }
+      .stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0 32px;
+        position: relative;
+      }
+      .stat:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 2px;
+        bottom: 2px;
+        width: 1px;
+        background: var(--line);
+      }
+      .stat-val {
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        color: var(--ink);
+      }
+      .stat-lbl {
+        font-family: "DM Mono", monospace;
+        font-size: 9.5px;
+        font-weight: 300;
+        color: var(--ink3);
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        margin-top: 5px;
+      }
+      .stats-note {
+        text-align: center;
+        font-family: "DM Mono", monospace;
+        font-size: 10px;
+        color: var(--ink4);
+        margin-top: 18px;
+        letter-spacing: 0.04em;
+      }
 
-/* ============ PROBLEM ============ */
-.sec{padding:96px 32px;border-top:1px solid var(--line)}
-.problem{text-align:center;background:var(--bg2)}
-.problem h2{font-size:clamp(26px,3.6vw,42px);font-weight:700;letter-spacing:-.04em;line-height:1.12;color:var(--ink);margin-bottom:22px}
-.problem p{font-size:16px;font-weight:300;color:var(--ink2);line-height:1.75;max-width:520px;margin:0 auto}
+      /* ============ PROGRAMS ============ */
+      .programs {
+        background: var(--bg);
+        border-bottom: 1px solid var(--line);
+        padding: 40px 32px 44px;
+        text-align: center;
+      }
+      .programs-lbl {
+        font-family: "DM Mono", monospace;
+        font-size: 10px;
+        font-weight: 300;
+        color: var(--ink4);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 22px;
+        display: block;
+      }
+      .programs-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 28px 56px;
+      }
+      .program {
+        display: flex;
+        align-items: center;
+        opacity: 0.72;
+        transition: opacity 0.2s;
+        text-decoration: none;
+      }
+      .program:hover {
+        opacity: 1;
+      }
+      .program img {
+        display: block;
+        height: auto;
+      }
+      .program-nv img {
+        height: 52px;
+        width: auto;
+      }
+      .program-sv {
+        gap: 14px;
+      }
+      .program-sv img {
+        height: 18px;
+        width: auto;
+      }
+      .program-sv .pdiv {
+        width: 1.5px;
+        height: 40px;
+        background: var(--ink);
+      }
+      .program-sv .ptxt {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.15;
+        color: var(--ink);
+        text-align: left;
+        letter-spacing: -0.01em;
+      }
 
-/* ============ STACK DIAGRAM ============ */
-.stack{background:var(--bg)}
-.stack-head{text-align:center;max-width:640px;margin:0 auto 44px}
-.stack-head h2{font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-.035em;line-height:1.25;color:var(--ink)}
-.stack-flow{max-width:420px;margin:0 auto;display:flex;flex-direction:column;align-items:center}
-.stack-node{width:100%;text-align:center;padding:14px 20px;border:1px solid var(--line);border-radius:8px;background:var(--bg2);font-size:14px;font-weight:600;letter-spacing:-.01em;color:var(--ink2)}
-.stack-node.final{background:var(--ink);color:#0c0c0b;border-color:var(--ink);font-weight:700}
-.stack-arrow{color:var(--ink4);font-size:13px;padding:8px 0;line-height:1}
+      /* ============ PROBLEM ============ */
+      .sec {
+        padding: 96px 32px;
+        border-top: 1px solid var(--line);
+      }
+      .problem {
+        text-align: center;
+        background: var(--bg2);
+      }
+      .problem h2 {
+        font-size: clamp(26px, 3.6vw, 42px);
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        line-height: 1.12;
+        color: var(--ink);
+        margin-bottom: 22px;
+      }
+      .problem p {
+        font-size: 16px;
+        font-weight: 300;
+        color: var(--ink2);
+        line-height: 1.75;
+        max-width: 520px;
+        margin: 0 auto;
+      }
 
-/* ============ CORE STATEMENT ============ */
-.statement{background:var(--bg2);padding:130px 32px;text-align:center}
-.statement h2{font-size:clamp(24px,3.6vw,42px);font-weight:800;letter-spacing:-.045em;line-height:1.28;color:var(--ink);max-width:760px;margin:0 auto}
+      /* ============ STACK DIAGRAM ============ */
+      .stack {
+        background: var(--bg);
+      }
+      .stack-head {
+        text-align: center;
+        max-width: 640px;
+        margin: 0 auto 44px;
+      }
+      .stack-head h2 {
+        font-size: clamp(22px, 3vw, 32px);
+        font-weight: 700;
+        letter-spacing: -0.035em;
+        line-height: 1.25;
+        color: var(--ink);
+      }
+      .stack-flow {
+        max-width: 420px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .stack-node {
+        width: 100%;
+        text-align: center;
+        padding: 14px 20px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--bg2);
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        color: var(--ink2);
+      }
+      .stack-node.final {
+        background: var(--ink);
+        color: #0c0c0b;
+        border-color: var(--ink);
+        font-weight: 700;
+      }
+      .stack-arrow {
+        color: var(--ink4);
+        font-size: 13px;
+        padding: 8px 0;
+        line-height: 1;
+      }
 
-/* ============ CLOSER LOOK ============ */
-.closer{background:var(--bg);display:flex;flex-direction:column;align-items:center}
-.card-window{
-  width:100%;max-width:380px;background:var(--bg2);border:1px solid var(--line);
-  border-radius:12px;overflow:hidden;box-shadow:0 60px 130px -50px rgba(0,0,0,.75);
-}
-.card-bar{padding:11px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:7px}
-.card-dot{width:7px;height:7px;border-radius:50%;background:var(--line)}
-.card-bar-title{font-family:'DM Mono',monospace;font-size:9.5px;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;margin-left:2px}
-.card-body{padding:22px 20px}
-.card-field{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line2);font-size:12px}
-.card-field .k{color:var(--ink3)}
-.card-field .v{color:var(--ink);font-weight:500;text-align:right}
-.card-review-lbl{font-family:'DM Mono',monospace;font-size:9.5px;color:var(--ink4);letter-spacing:.1em;text-transform:uppercase;margin:16px 0 8px}
-.card-suggestion{border:1px solid var(--line);border-radius:6px;padding:11px 12px;font-size:12.5px;color:var(--ink2);line-height:1.6;margin-bottom:16px;background:rgba(255,255,255,.015)}
-.card-actions{display:flex;gap:8px;margin-bottom:16px}
-.card-btn{flex:1;text-align:center;font-size:11.5px;font-weight:600;padding:9px 0;border-radius:7px;letter-spacing:.01em}
-.card-btn.accept{background:var(--ink);color:#0c0c0b}
-.card-btn.reject{border:1px solid var(--line);color:var(--ink3)}
-.card-outcome{font-family:'DM Mono',monospace;font-size:11px;color:var(--ink3);text-align:center;padding-top:12px;border-top:1px solid var(--line2)}
-.card-outcome .acc{color:var(--accent)}
+      /* ============ CORE STATEMENT ============ */
+      .statement {
+        background: var(--bg2);
+        padding: 130px 32px;
+        text-align: center;
+      }
+      .statement h2 {
+        font-size: clamp(24px, 3.6vw, 42px);
+        font-weight: 800;
+        letter-spacing: -0.045em;
+        line-height: 1.28;
+        color: var(--ink);
+        max-width: 760px;
+        margin: 0 auto;
+      }
 
-/* ============ ENTERPRISE ============ */
-.enterprise{background:var(--bg2);text-align:center}
-.ent-head h2{font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-.035em;line-height:1.25;color:var(--ink);max-width:640px;margin:0 auto 12px}
-.ent-head p{font-size:15px;font-weight:300;color:var(--ink2);max-width:480px;margin:0 auto 32px;line-height:1.7}
-.ent-flow{font-family:'DM Mono',monospace;font-size:12.5px;color:var(--ink3);letter-spacing:.01em;line-height:2.1;max-width:720px;margin:0 auto}
-.ent-flow .node{color:var(--ink);font-weight:500}
-.ent-flow .arrow{color:var(--ink4);padding:0 6px}
+      /* ============ CLOSER LOOK ============ */
+      .closer {
+        background: var(--bg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .card-window {
+        width: 100%;
+        max-width: 380px;
+        background: var(--bg2);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 60px 130px -50px rgba(0, 0, 0, 0.75);
+      }
+      .card-bar {
+        padding: 11px 16px;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .card-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--line);
+      }
+      .card-bar-title {
+        font-family: "DM Mono", monospace;
+        font-size: 9.5px;
+        color: var(--ink3);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-left: 2px;
+      }
+      .card-body {
+        padding: 22px 20px;
+      }
+      .card-field {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 9px 0;
+        border-bottom: 1px solid var(--line2);
+        font-size: 12px;
+      }
+      .card-field .k {
+        color: var(--ink3);
+      }
+      .card-field .v {
+        color: var(--ink);
+        font-weight: 500;
+        text-align: right;
+      }
+      .card-review-lbl {
+        font-family: "DM Mono", monospace;
+        font-size: 9.5px;
+        color: var(--ink4);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin: 16px 0 8px;
+      }
+      .card-suggestion {
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 11px 12px;
+        font-size: 12.5px;
+        color: var(--ink2);
+        line-height: 1.6;
+        margin-bottom: 16px;
+        background: rgba(255, 255, 255, 0.015);
+      }
+      .card-actions {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+      .card-btn {
+        flex: 1;
+        text-align: center;
+        font-size: 11.5px;
+        font-weight: 600;
+        padding: 9px 0;
+        border-radius: 7px;
+        letter-spacing: 0.01em;
+      }
+      .card-btn.accept {
+        background: var(--ink);
+        color: #0c0c0b;
+      }
+      .card-btn.reject {
+        border: 1px solid var(--line);
+        color: var(--ink3);
+      }
+      .card-outcome {
+        font-family: "DM Mono", monospace;
+        font-size: 11px;
+        color: var(--ink3);
+        text-align: center;
+        padding-top: 12px;
+        border-top: 1px solid var(--line2);
+      }
+      .card-outcome .acc {
+        color: var(--accent);
+      }
 
-/* ============ PROOF ============ */
-.proof{padding:56px 32px;text-align:center;background:var(--bg2)}
-.proof p{font-family:'DM Mono',monospace;font-size:12px;color:var(--ink3);letter-spacing:.04em}
+      /* ============ ENTERPRISE ============ */
+      .enterprise {
+        background: var(--bg2);
+        text-align: center;
+      }
+      .ent-head h2 {
+        font-size: clamp(22px, 3vw, 32px);
+        font-weight: 700;
+        letter-spacing: -0.035em;
+        line-height: 1.25;
+        color: var(--ink);
+        max-width: 640px;
+        margin: 0 auto 12px;
+      }
+      .ent-head p {
+        font-size: 15px;
+        font-weight: 300;
+        color: var(--ink2);
+        max-width: 480px;
+        margin: 0 auto 32px;
+        line-height: 1.7;
+      }
+      .ent-flow {
+        font-family: "DM Mono", monospace;
+        font-size: 12.5px;
+        color: var(--ink3);
+        letter-spacing: 0.01em;
+        line-height: 2.1;
+        max-width: 720px;
+        margin: 0 auto;
+      }
+      .ent-flow .node {
+        color: var(--ink);
+        font-weight: 500;
+      }
+      .ent-flow .arrow {
+        color: var(--ink4);
+        padding: 0 6px;
+      }
 
-/* ============ FINAL CTA ============ */
-.final-cta{position:relative;background:var(--bg);padding:130px 32px;text-align:center;overflow:hidden}
-.final-bg{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 50% 60% at 50% 100%,rgba(255,106,61,.08) 0%,transparent 55%)}
-.final-inner{position:relative;z-index:1}
-.final-cta h2{font-size:clamp(28px,4.4vw,48px);font-weight:800;letter-spacing:-.045em;color:var(--ink);margin-bottom:16px}
-.final-cta p{font-size:16px;font-weight:300;color:var(--ink2);max-width:440px;margin:0 auto 36px}
-.final-btns{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap}
+      /* ============ PROOF ============ */
+      .proof {
+        padding: 56px 32px;
+        text-align: center;
+        background: var(--bg2);
+      }
+      .proof p {
+        font-family: "DM Mono", monospace;
+        font-size: 12px;
+        color: var(--ink3);
+        letter-spacing: 0.04em;
+      }
 
-/* ============ FOOTER ============ */
-footer{background:var(--line2);border-top:1px solid var(--line);padding:28px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
-.f-brand{display:flex;flex-direction:column;gap:4px}
-.f-brand-top{font-size:13px;font-weight:700;letter-spacing:-.02em;color:var(--ink);display:flex;align-items:center;gap:8px}
-.f-brand-img{width:16px;height:16px;object-fit:contain;flex-shrink:0;filter:brightness(10)}
-.f-sub{font-size:11px;font-weight:300;color:var(--ink4);margin-left:24px}
-.f-links{display:flex;gap:20px;align-items:center}
-.f-link{font-size:12px;font-weight:400;color:var(--ink3);text-decoration:none;transition:color .15s}
-.f-link:hover{color:var(--ink)}
-.f-copy{font-size:11px;color:var(--ink4)}
+      /* ============ FINAL CTA ============ */
+      .final-cta {
+        position: relative;
+        background: var(--bg);
+        padding: 130px 32px;
+        text-align: center;
+        overflow: hidden;
+      }
+      .final-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse 50% 60% at 50% 100%,
+          rgba(255, 106, 61, 0.08) 0%,
+          transparent 55%
+        );
+      }
+      .final-inner {
+        position: relative;
+        z-index: 1;
+      }
+      .final-cta h2 {
+        font-size: clamp(28px, 4.4vw, 48px);
+        font-weight: 800;
+        letter-spacing: -0.045em;
+        color: var(--ink);
+        margin-bottom: 16px;
+      }
+      .final-cta p {
+        font-size: 16px;
+        font-weight: 300;
+        color: var(--ink2);
+        max-width: 440px;
+        margin: 0 auto 36px;
+      }
+      .final-btns {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
 
-/* ============ COHORT PAGE (unchanged, unlinked from main nav/footer) ============ */
-.ch-hero{padding:108px 32px 68px;border-bottom:1px solid var(--line);background:var(--bg2)}
-.ch-inner{max-width:880px;margin:0 auto}
-.ch-h1{font-size:clamp(30px,5vw,54px);font-weight:800;letter-spacing:-.045em;line-height:.95;color:var(--ink);margin-bottom:22px;max-width:580px}
-.ch-sub{font-size:15px;font-weight:300;color:var(--ink2);line-height:1.8;max-width:500px}
-.ch-sec-lbl{display:block;font-family:'DM Mono',monospace;font-size:11px;font-weight:300;color:var(--ink3);letter-spacing:.08em;text-transform:uppercase;max-width:880px;margin:0 auto;padding:44px 32px 0;border-top:1px solid var(--line)}
-.ch-members{max-width:880px;margin:0 auto;padding:0 32px}
-.member{display:grid;grid-template-columns:180px 1fr;gap:44px;align-items:start;padding:36px 0;border-bottom:1px solid var(--line)}
-.m-name{font-size:clamp(17px,2.2vw,22px);font-weight:700;letter-spacing:-.04em;line-height:.97;color:var(--ink);margin-bottom:7px}
-.m-role{font-size:10px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);line-height:1.6}
-.m-bio{font-size:13px;font-weight:300;color:var(--ink2);line-height:1.85;max-width:520px;margin-bottom:14px}
-.m-signal{font-family:'DM Mono',monospace;font-size:10px;font-weight:300;color:var(--ink3);letter-spacing:.02em;line-height:1.6;margin-bottom:12px}
-.m-signal span::after{content:' · ';color:var(--line)}
-.m-signal span:last-child::after{content:''}
-.m-links{display:flex;gap:14px}
-.m-link{font-size:11px;font-weight:400;color:var(--ink3);text-decoration:none;letter-spacing:.02em;border-bottom:1px solid transparent;padding-bottom:1px;transition:color .15s,border-color .15s}
-.m-link:hover{color:var(--ink);border-color:var(--ink3)}
-.ch-closing{padding:64px 32px;border-top:1px solid var(--line);background:var(--bg)}
-.ch-closing-inner{max-width:880px;margin:0 auto}
-.ch-closing-big{font-size:clamp(22px,3.5vw,40px);font-weight:700;letter-spacing:-.04em;line-height:1.04;color:var(--ink);max-width:560px}
-.ch-closing-big .dim{color:var(--ink3);font-weight:300;font-style:italic}
+      /* ============ FOOTER ============ */
+      footer {
+        background: var(--line2);
+        border-top: 1px solid var(--line);
+        padding: 28px 32px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+      .f-brand {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .f-brand-top {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .f-brand-img {
+        width: 16px;
+        height: 16px;
+        object-fit: contain;
+        flex-shrink: 0;
+        filter: brightness(10);
+      }
+      .f-sub {
+        font-size: 11px;
+        font-weight: 300;
+        color: var(--ink4);
+        margin-left: 24px;
+      }
+      .f-links {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+      .f-link {
+        font-size: 12px;
+        font-weight: 400;
+        color: var(--ink3);
+        text-decoration: none;
+        transition: color 0.15s;
+      }
+      .f-link:hover {
+        color: var(--ink);
+      }
+      .f-copy {
+        font-size: 11px;
+        color: var(--ink4);
+      }
 
-/* MOBILE */
-@media(max-width:860px){
-  .hero{padding:120px 20px 64px}
-}
-@media(max-width:720px){
-  nav{padding:0 16px}
-  .sec{padding:64px 16px}
-  .statement{padding:88px 16px}
-  .final-cta{padding:88px 16px}
-  .problem h2{padding:0 4px}
-  .stack-node{font-size:13px;padding:12px 16px}
-  .stats-strip{padding:28px 16px}
-  .stats-row{gap:20px 0}
-  .stat{width:50%;padding:10px 12px}
-  .stat:not(:last-child)::after{display:none}
-  .stat:nth-child(odd)::before{content:'';position:absolute;right:0;top:4px;bottom:4px;width:1px;background:var(--line)}
-  .ent-flow{font-size:11px;line-height:1.9}
-  footer{padding:20px 16px;flex-direction:column;align-items:flex-start;gap:14px}
-  .f-links{gap:16px}
-  .ch-hero{padding:88px 16px 52px}
-  .ch-sec-lbl{padding:36px 16px 0}
-  .ch-members{padding:0 16px}
-  .member{grid-template-columns:1fr;gap:14px}
-  .ch-closing{padding:48px 16px}
-}
-@media(prefers-reduced-motion:reduce){
-  .sr{transition:opacity .3s linear;transform:none}
-  .hero-bg{animation:none}
-}
-</style>
-</head>
-<body>
+      /* ============ COHORT PAGE (unchanged, unlinked from main nav/footer) ============ */
+      .ch-hero {
+        padding: 108px 32px 68px;
+        border-bottom: 1px solid var(--line);
+        background: var(--bg2);
+      }
+      .ch-inner {
+        max-width: 880px;
+        margin: 0 auto;
+      }
+      .ch-h1 {
+        font-size: clamp(30px, 5vw, 54px);
+        font-weight: 800;
+        letter-spacing: -0.045em;
+        line-height: 0.95;
+        color: var(--ink);
+        margin-bottom: 22px;
+        max-width: 580px;
+      }
+      .ch-sub {
+        font-size: 15px;
+        font-weight: 300;
+        color: var(--ink2);
+        line-height: 1.8;
+        max-width: 500px;
+      }
+      .ch-sec-lbl {
+        display: block;
+        font-family: "DM Mono", monospace;
+        font-size: 11px;
+        font-weight: 300;
+        color: var(--ink3);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 44px 32px 0;
+        border-top: 1px solid var(--line);
+      }
+      .ch-members {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 0 32px;
+      }
+      .member {
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 44px;
+        align-items: start;
+        padding: 36px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .m-name {
+        font-size: clamp(17px, 2.2vw, 22px);
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        line-height: 0.97;
+        color: var(--ink);
+        margin-bottom: 7px;
+      }
+      .m-role {
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--ink3);
+        line-height: 1.6;
+      }
+      .m-bio {
+        font-size: 13px;
+        font-weight: 300;
+        color: var(--ink2);
+        line-height: 1.85;
+        max-width: 520px;
+        margin-bottom: 14px;
+      }
+      .m-signal {
+        font-family: "DM Mono", monospace;
+        font-size: 10px;
+        font-weight: 300;
+        color: var(--ink3);
+        letter-spacing: 0.02em;
+        line-height: 1.6;
+        margin-bottom: 12px;
+      }
+      .m-signal span::after {
+        content: " · ";
+        color: var(--line);
+      }
+      .m-signal span:last-child::after {
+        content: "";
+      }
+      .m-links {
+        display: flex;
+        gap: 14px;
+      }
+      .m-link {
+        font-size: 11px;
+        font-weight: 400;
+        color: var(--ink3);
+        text-decoration: none;
+        letter-spacing: 0.02em;
+        border-bottom: 1px solid transparent;
+        padding-bottom: 1px;
+        transition:
+          color 0.15s,
+          border-color 0.15s;
+      }
+      .m-link:hover {
+        color: var(--ink);
+        border-color: var(--ink3);
+      }
+      .ch-closing {
+        padding: 64px 32px;
+        border-top: 1px solid var(--line);
+        background: var(--bg);
+      }
+      .ch-closing-inner {
+        max-width: 880px;
+        margin: 0 auto;
+      }
+      .ch-closing-big {
+        font-size: clamp(22px, 3.5vw, 40px);
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        line-height: 1.04;
+        color: var(--ink);
+        max-width: 560px;
+      }
+      .ch-closing-big .dim {
+        color: var(--ink3);
+        font-weight: 300;
+        font-style: italic;
+      }
 
-<!-- NAV -->
-<nav>
-  <a class="n-logo" href="#" onclick="return goTop()">
-    <img class="n-logo-img" src="./Logos-3.png" alt="Smartly Labs"/>
-    <span class="n-logo-word">Smartly Labs</span>
-  </a>
-  <a class="n-cta" href="mailto:hello@smartlylabs.ai">Book a demo</a>
-</nav>
-
-<!-- PAGE: MAIN -->
-<div id="page-main" class="page active">
-
-<!-- 1. HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-inner">
-    <img class="hero-mark sr" src="./Logos-3.png" alt=""/>
-    <span class="t-kicker sr">Smartly Labs</span>
-    <h1 class="hero-h1 sr d1">The composable intelligence layer for production AI.</h1>
-    <p class="hero-sub sr d2">Learning infrastructure for AI that captures deployment signals, human judgment and outcomes to improve what ships next.</p>
-    <div class="hero-btns sr d3">
-      <a class="btn-primary" href="mailto:hello@smartlylabs.ai">
-        Book a demo
-        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8L8 2M8 2H3.5M8 2V6.5"/></svg>
+      /* MOBILE */
+      @media (max-width: 860px) {
+        .hero {
+          padding: 120px 20px 64px;
+        }
+      }
+      @media (max-width: 720px) {
+        nav {
+          padding: 0 16px;
+        }
+        .sec {
+          padding: 64px 16px;
+        }
+        .statement {
+          padding: 88px 16px;
+        }
+        .final-cta {
+          padding: 88px 16px;
+        }
+        .problem h2 {
+          padding: 0 4px;
+        }
+        .stack-node {
+          font-size: 13px;
+          padding: 12px 16px;
+        }
+        .stats-strip {
+          padding: 28px 16px;
+        }
+        .stats-row {
+          gap: 20px 0;
+        }
+        .stat {
+          width: 50%;
+          padding: 10px 12px;
+        }
+        .stat:not(:last-child)::after {
+          display: none;
+        }
+        .stat:nth-child(odd)::before {
+          content: "";
+          position: absolute;
+          right: 0;
+          top: 4px;
+          bottom: 4px;
+          width: 1px;
+          background: var(--line);
+        }
+        .ent-flow {
+          font-size: 11px;
+          line-height: 1.9;
+        }
+        .programs {
+          padding: 32px 16px 36px;
+        }
+        .programs-row {
+          gap: 24px 36px;
+        }
+        .program-nv img {
+          height: 44px;
+        }
+        .program-sv img {
+          height: 15px;
+        }
+        .program-sv .pdiv {
+          height: 34px;
+        }
+        .program-sv .ptxt {
+          font-size: 12px;
+        }
+        footer {
+          padding: 20px 16px;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 14px;
+        }
+        .f-links {
+          gap: 16px;
+        }
+        .ch-hero {
+          padding: 88px 16px 52px;
+        }
+        .ch-sec-lbl {
+          padding: 36px 16px 0;
+        }
+        .ch-members {
+          padding: 0 16px;
+        }
+        .member {
+          grid-template-columns: 1fr;
+          gap: 14px;
+        }
+        .ch-closing {
+          padding: 48px 16px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .sr {
+          transition: opacity 0.3s linear;
+          transform: none;
+        }
+        .hero-bg {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <a class="n-logo" href="#" onclick="return goTop();">
+        <img class="n-logo-img" src="./Logos-3.png" alt="Smartly Labs" />
+        <span class="n-logo-word">Smartly Labs</span>
       </a>
-      <a class="btn-text" href="https://infra.smartlylabs.ai" target="_blank" rel="noopener">Existing participant? Log in</a>
-    </div>
-    <div class="feed sr d4">
-      <div class="feed-row"><span class="feed-lbl">Production signal</span><span class="feed-val">agent response</span></div>
-      <div class="feed-arrow sr d3">↓</div>
-      <div class="feed-row sr d3"><span class="feed-val">detected issue</span></div>
-      <div class="feed-arrow sr d4">↓</div>
-      <div class="feed-row sr d4"><span class="feed-strong">Task created</span></div>
-      <div class="feed-div"></div>
-      <div class="feed-row sr d5"><span class="feed-lbl">Localization review</span></div>
-      <div class="feed-row sr d5"><span class="feed-val">language — Hindi / Hinglish</span></div>
-      <div class="feed-row sr d6"><span class="feed-val">context — customer support</span></div>
-      <div class="feed-row sr d6"><span class="feed-val">human judgment requested</span></div>
-      <div class="feed-div"></div>
-      <div class="feed-row sr d7"><span class="feed-accept">Accepted</span><span class="feed-note">→ incorporated into next version</span></div>
-    </div>
-  </div>
-</section>
+      <a class="n-cta" href="mailto:hello@smartlylabs.ai">Book a demo</a>
+    </nav>
 
-<!-- 2. TRACTION -->
-<section class="stats-strip">
-  <div class="stats-row sr">
-    <div class="stat"><span class="stat-val">4,300+</span><span class="stat-lbl">MAU</span></div>
-    <div class="stat"><span class="stat-val">4,700+</span><span class="stat-lbl">AI Agents Created</span></div>
-    <div class="stat"><span class="stat-val">3,900+</span><span class="stat-lbl">Improved Agents</span></div>
-    <div class="stat"><span class="stat-val">125,000+</span><span class="stat-lbl">Human Events Captured</span></div>
-  </div>
-  <div class="stats-note">Beta numbers</div>
-</section>
+    <!-- PAGE: MAIN -->
+    <div id="page-main" class="page active">
+      <!-- 1. HERO -->
+      <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-inner">
+          <img class="hero-mark sr" src="./Logos-3.png" alt="" />
+          <span class="t-kicker sr">Smartly Labs</span>
+          <h1 class="hero-h1 sr d1">
+            The composable intelligence layer for production AI.
+          </h1>
+          <p class="hero-sub sr d2">
+            Learning infrastructure for AI that captures deployment signals,
+            human judgment and outcomes to improve what ships next.
+          </p>
+          <div class="hero-btns sr d3">
+            <a class="btn-primary" href="mailto:hello@smartlylabs.ai">
+              Book a demo
+              <svg
+                viewBox="0 0 10 10"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M2 8L8 2M8 2H3.5M8 2V6.5" />
+              </svg>
+            </a>
+            <a
+              class="btn-text"
+              href="https://infra.smartlylabs.ai"
+              target="_blank"
+              rel="noopener"
+              >Existing participant? Log in</a
+            >
+          </div>
+          <div class="feed sr d4">
+            <div class="feed-row">
+              <span class="feed-lbl">Production signal</span
+              ><span class="feed-val">agent response</span>
+            </div>
+            <div class="feed-arrow sr d3">↓</div>
+            <div class="feed-row sr d3">
+              <span class="feed-val">detected issue</span>
+            </div>
+            <div class="feed-arrow sr d4">↓</div>
+            <div class="feed-row sr d4">
+              <span class="feed-strong">Task created</span>
+            </div>
+            <div class="feed-div"></div>
+            <div class="feed-row sr d5">
+              <span class="feed-lbl">Localization review</span>
+            </div>
+            <div class="feed-row sr d5">
+              <span class="feed-val">language — Hindi / Hinglish</span>
+            </div>
+            <div class="feed-row sr d6">
+              <span class="feed-val">context — customer support</span>
+            </div>
+            <div class="feed-row sr d6">
+              <span class="feed-val">human judgment requested</span>
+            </div>
+            <div class="feed-div"></div>
+            <div class="feed-row sr d7">
+              <span class="feed-accept">Accepted</span
+              ><span class="feed-note">→ incorporated into next version</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<!-- 3. THE PROBLEM -->
-<section class="sec problem">
-  <div class="wi-nar sr">
-    <h2>Production AI creates intelligence that most systems lose.</h2>
-    <p>Every deployment produces failures, corrections and preferences. Almost none of it makes the next deployment smarter.</p>
-  </div>
-</section>
+      <!-- 2. TRACTION -->
+      <section class="stats-strip">
+        <div class="stats-row sr">
+          <div class="stat">
+            <span class="stat-val">4,500+</span
+            ><span class="stat-lbl">MAU</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">7,500+</span
+            ><span class="stat-lbl">AI Agents Created</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">5,800+</span
+            ><span class="stat-lbl">Improved Agents</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">245,000+</span
+            ><span class="stat-lbl">Human Events Captured</span>
+          </div>
+        </div>
+        <div class="stats-note">Beta numbers</div>
+      </section>
 
-<!-- 4. THE STACK -->
-<section class="sec stack">
-  <div class="wi">
-    <div class="stack-head sr">
-      <h2>The AI stack has models, agents and observability. It has no composable intelligence layer.</h2>
+      <!-- 2b. PROGRAMS -->
+      <section class="programs">
+        <span class="programs-lbl sr">Member of</span>
+        <div class="programs-row sr d1">
+          <a
+            class="program program-nv"
+            href="https://www.nvidia.com/en-us/startups/"
+            target="_blank"
+            rel="noopener"
+            aria-label="NVIDIA Inception Program"
+          >
+            <img
+              src="./nvidia-inception-white.png"
+              alt="NVIDIA Inception Program"
+              width="413"
+              height="159"
+            />
+          </a>
+          <a
+            class="program program-sv"
+            href="https://www.sarvam.ai"
+            target="_blank"
+            rel="noopener"
+            aria-label="Sarvam for Startups"
+          >
+            <img
+              src="./sarvam-white.png"
+              alt="Sarvam"
+              width="360"
+              height="58"
+            />
+            <span class="pdiv"></span>
+            <span class="ptxt">for<br />Startups</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- 3. THE PROBLEM -->
+      <section class="sec problem">
+        <div class="wi-nar sr">
+          <h2>Production AI creates intelligence that most systems lose.</h2>
+          <p>
+            Every deployment produces failures, corrections and preferences.
+            Almost none of it makes the next deployment smarter.
+          </p>
+        </div>
+      </section>
+
+      <!-- 4. THE STACK -->
+      <section class="sec stack">
+        <div class="wi">
+          <div class="stack-head sr">
+            <h2>
+              The AI stack has models, agents and observability. It has no
+              composable intelligence layer.
+            </h2>
+          </div>
+          <div class="stack-flow sr d1">
+            <div class="stack-node">Foundation Models</div>
+            <div class="stack-arrow">↓</div>
+            <div class="stack-node">Agents</div>
+            <div class="stack-arrow">↓</div>
+            <div class="stack-node">Enterprise Workflows</div>
+            <div class="stack-arrow">↓</div>
+            <div class="stack-node">Observability / Tracing</div>
+            <div class="stack-arrow">↓</div>
+            <div class="stack-node final">
+              Smartly: Composable Intelligence Layer
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. ONE CORE STATEMENT -->
+      <section class="statement">
+        <h2 class="sr">
+          Production creates intelligence.<br />Smartly makes it reusable.
+        </h2>
+      </section>
+
+      <!-- 6. A CLOSER LOOK -->
+      <section class="sec closer">
+        <div class="card-window sr">
+          <div class="card-bar">
+            <span class="card-dot"></span>
+            <span class="card-bar-title">Production signal detected</span>
+          </div>
+          <div class="card-body">
+            <div class="card-field">
+              <span class="k">Customer response</span
+              ><span class="v">Technically correct</span>
+            </div>
+            <div class="card-field">
+              <span class="k">Context mismatch</span
+              ><span class="v">Hindi / Hinglish</span>
+            </div>
+            <div class="card-review-lbl">Review</div>
+            <div class="card-suggestion">
+              Suggested adaptation: “Iske liye humari support team se contact
+              karein.”
+            </div>
+            <div class="card-actions">
+              <span class="card-btn accept">Accept</span>
+              <span class="card-btn reject">Reject</span>
+            </div>
+            <div class="card-outcome">
+              → <span class="acc">Accepted</span> → next deployment
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. ENTERPRISE -->
+      <section class="sec enterprise">
+        <div class="wi ent-head sr">
+          <h2>Smartly plugs into production AI wherever it is built.</h2>
+          <p>
+            Enterprises don't need to rebuild on Smartly. They connect what they
+            already have.
+          </p>
+        </div>
+        <div class="ent-flow sr d1">
+          <span class="node">Trace + MCP</span><span class="arrow">→</span
+          ><span class="node">Agents</span><span class="arrow">→</span
+          ><span class="node">Smartly Intelligence Layer</span
+          ><span class="arrow">→</span><span class="node">Evaluation</span
+          ><span class="arrow">→</span><span class="node">Human Judgment</span
+          ><span class="arrow">→</span><span class="node">Localization</span
+          ><span class="arrow">→</span><span class="node">Improvement</span>
+        </div>
+      </section>
+
+      <!-- 8. PROOF -->
+      <section class="proof">
+        <p>Built from real production learning.</p>
+      </section>
+
+      <!-- 9. FINAL CTA -->
+      <section class="final-cta">
+        <div class="final-bg"></div>
+        <div class="final-inner">
+          <h2 class="sr">Building AI in production?</h2>
+          <p class="sr d1">
+            Smartly is working with teams turning production feedback into
+            measurable improvements.
+          </p>
+          <div class="final-btns sr d2">
+            <a class="btn-primary" href="mailto:hello@smartlylabs.ai">
+              Book a demo
+              <svg
+                viewBox="0 0 10 10"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M2 8L8 2M8 2H3.5M8 2V6.5" />
+              </svg>
+            </a>
+            <a
+              class="btn-text"
+              href="https://infra.smartlylabs.ai"
+              target="_blank"
+              rel="noopener"
+              >Existing participant? Log in</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. FOOTER -->
+      <footer>
+        <div class="f-brand">
+          <span class="f-brand-top">
+            <img class="f-brand-img" src="./Logos-3.png" alt="" />
+            Smartly Labs
+          </span>
+          <span class="f-sub"
+            >The composable intelligence layer for production AI.</span
+          >
+        </div>
+        <div class="f-links">
+          <a class="f-link" href="mailto:hello@smartlylabs.ai">Book a demo</a>
+          <a
+            class="f-link"
+            href="https://infra.smartlylabs.ai"
+            target="_blank"
+            rel="noopener"
+            >Log in</a
+          >
+          <span class="f-copy">© 2026 Smartly Labs</span>
+        </div>
+      </footer>
     </div>
-    <div class="stack-flow sr d1">
-      <div class="stack-node">Foundation Models</div>
-      <div class="stack-arrow">↓</div>
-      <div class="stack-node">Agents</div>
-      <div class="stack-arrow">↓</div>
-      <div class="stack-node">Enterprise Workflows</div>
-      <div class="stack-arrow">↓</div>
-      <div class="stack-node">Observability / Tracing</div>
-      <div class="stack-arrow">↓</div>
-      <div class="stack-node final">Smartly: Composable Intelligence Layer</div>
-    </div>
-  </div>
-</section>
+    <!-- /page-main -->
 
-<!-- 5. ONE CORE STATEMENT -->
-<section class="statement">
-  <h2 class="sr">Production creates intelligence.<br/>Smartly makes it reusable.</h2>
-</section>
-
-<!-- 6. A CLOSER LOOK -->
-<section class="sec closer">
-  <div class="card-window sr">
-    <div class="card-bar">
-      <span class="card-dot"></span>
-      <span class="card-bar-title">Production signal detected</span>
-    </div>
-    <div class="card-body">
-      <div class="card-field"><span class="k">Customer response</span><span class="v">Technically correct</span></div>
-      <div class="card-field"><span class="k">Context mismatch</span><span class="v">Hindi / Hinglish</span></div>
-      <div class="card-review-lbl">Review</div>
-      <div class="card-suggestion">Suggested adaptation: “Iske liye humari support team se contact karein.”</div>
-      <div class="card-actions">
-        <span class="card-btn accept">Accept</span>
-        <span class="card-btn reject">Reject</span>
+    <!-- PAGE: COHORT (kept for future use — not linked from the homepage nav or footer) -->
+    <div id="page-cohort" class="page">
+      <div class="ch-hero">
+        <div class="ch-inner">
+          <h1 class="ch-h1">
+            Built by operators,<br />systems engineers,<br />and infrastructure
+            builders.
+          </h1>
+          <p class="ch-sub">
+            <strong style="color: var(--ink); font-weight: 500"
+              >Smartly brings together infrastructure engineers, AI researchers,
+              and operator-builders because deployment learning requires
+              expertise across production systems, human evaluation, and
+              distributed AI.</strong
+            ><br /><br />Smartly Labs is being shaped by a distributed cohort of
+            researchers, infrastructure engineers, open-source contributors, and
+            AI systems builders focused on helping AI products learn from
+            real-world deployment.<br /><br />Most members have spent years
+            building production systems across AI, distributed infrastructure,
+            cybersecurity, cloud systems, orchestration frameworks, and
+            real-world deployment environments.
+          </p>
+        </div>
       </div>
-      <div class="card-outcome">→ <span class="acc">Accepted</span> → next deployment</div>
-    </div>
-  </div>
-</section>
 
-<!-- 7. ENTERPRISE -->
-<section class="sec enterprise">
-  <div class="wi ent-head sr">
-    <h2>Smartly plugs into production AI wherever it is built.</h2>
-    <p>Enterprises don't need to rebuild on Smartly. They connect what they already have.</p>
-  </div>
-  <div class="ent-flow sr d1">
-    <span class="node">Trace + MCP</span><span class="arrow">→</span><span class="node">Agents</span><span class="arrow">→</span><span class="node">Smartly Intelligence Layer</span><span class="arrow">→</span><span class="node">Evaluation</span><span class="arrow">→</span><span class="node">Human Judgment</span><span class="arrow">→</span><span class="node">Localization</span><span class="arrow">→</span><span class="node">Improvement</span>
-  </div>
-</section>
-
-<!-- 8. PROOF -->
-<section class="proof">
-  <p>Built from real production learning.</p>
-</section>
-
-<!-- 9. FINAL CTA -->
-<section class="final-cta">
-  <div class="final-bg"></div>
-  <div class="final-inner">
-    <h2 class="sr">Building AI in production?</h2>
-    <p class="sr d1">Smartly is working with teams turning production feedback into measurable improvements.</p>
-    <div class="final-btns sr d2">
-      <a class="btn-primary" href="mailto:hello@smartlylabs.ai">
-        Book a demo
-        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8L8 2M8 2H3.5M8 2V6.5"/></svg>
-      </a>
-      <a class="btn-text" href="https://infra.smartlylabs.ai" target="_blank" rel="noopener">Existing participant? Log in</a>
-    </div>
-  </div>
-</section>
-
-<!-- 10. FOOTER -->
-<footer>
-  <div class="f-brand">
-    <span class="f-brand-top">
-      <img class="f-brand-img" src="./Logos-3.png" alt=""/>
-      Smartly Labs
-    </span>
-    <span class="f-sub">The composable intelligence layer for production AI.</span>
-  </div>
-  <div class="f-links">
-    <a class="f-link" href="mailto:hello@smartlylabs.ai">Book a demo</a>
-    <a class="f-link" href="https://infra.smartlylabs.ai" target="_blank" rel="noopener">Log in</a>
-    <span class="f-copy">© 2026 Smartly Labs</span>
-  </div>
-</footer>
-
-</div><!-- /page-main -->
-
-<!-- PAGE: COHORT (kept for future use — not linked from the homepage nav or footer) -->
-<div id="page-cohort" class="page">
-
-<div class="ch-hero">
-  <div class="ch-inner">
-    <h1 class="ch-h1">Built by operators,<br/>systems engineers,<br/>and infrastructure builders.</h1>
-    <p class="ch-sub"><strong style="color:var(--ink);font-weight:500">Smartly brings together infrastructure engineers, AI researchers, and operator-builders because deployment learning requires expertise across production systems, human evaluation, and distributed AI.</strong><br/><br/>Smartly Labs is being shaped by a distributed cohort of researchers, infrastructure engineers, open-source contributors, and AI systems builders focused on helping AI products learn from real-world deployment.<br/><br/>Most members have spent years building production systems across AI, distributed infrastructure, cybersecurity, cloud systems, orchestration frameworks, and real-world deployment environments.</p>
-  </div>
-</div>
-
-<span class="ch-sec-lbl">Core Team</span>
-<div class="ch-members">
-  <div class="member">
-    <div>
-      <div class="m-name">Anubha<br/>Maneshwar</div>
-      <div class="m-role">Founder · Ecosystem Infrastructure · Deployment Learning</div>
-    </div>
-    <div>
-      <p class="m-bio">Founding Director of GirlScript Foundation, where her initiatives have reached more than 1,000,000 learners globally — recognized among the Top 2 Upskill &amp; Reskill Programs worldwide by Women Tech Network (USA).<br/><br/>Featured in Forbes Asia 30 Under 30 (Social Entrepreneurs). Has spoken at TEDx, GITEX Dubai, TiECON Silicon Valley, PyCon US, and Microsoft Build.</p>
-      <p class="m-signal"><span>Forbes Asia 30U30</span><span>GirlScript Foundation</span><span>Global Ecosystems</span><span>Deployment Infrastructure</span></p>
-      <div class="m-links">
-        <a class="m-link" href="#">LinkedIn</a>
-        <a class="m-link" href="#">Talks</a>
-        <a class="m-link" href="#">Foundation</a>
+      <span class="ch-sec-lbl">Core Team</span>
+      <div class="ch-members">
+        <div class="member">
+          <div>
+            <div class="m-name">Anubha<br />Maneshwar</div>
+            <div class="m-role">
+              Founder · Ecosystem Infrastructure · Deployment Learning
+            </div>
+          </div>
+          <div>
+            <p class="m-bio">
+              Founding Director of GirlScript Foundation, where her initiatives
+              have reached more than 1,000,000 learners globally — recognized
+              among the Top 2 Upskill &amp; Reskill Programs worldwide by Women
+              Tech Network (USA).<br /><br />Featured in Forbes Asia 30 Under 30
+              (Social Entrepreneurs). Has spoken at TEDx, GITEX Dubai, TiECON
+              Silicon Valley, PyCon US, and Microsoft Build.
+            </p>
+            <p class="m-signal">
+              <span>Forbes Asia 30U30</span><span>GirlScript Foundation</span
+              ><span>Global Ecosystems</span
+              ><span>Deployment Infrastructure</span>
+            </p>
+            <div class="m-links">
+              <a class="m-link" href="#">LinkedIn</a>
+              <a class="m-link" href="#">Talks</a>
+              <a class="m-link" href="#">Foundation</a>
+            </div>
+          </div>
+        </div>
+        <div class="member">
+          <div>
+            <div class="m-name">Ojas</div>
+            <div class="m-role">
+              Operations Infrastructure · Systems Execution · Deployment
+            </div>
+          </div>
+          <div>
+            <p class="m-bio">
+              Co-Founder at Smartly Ventures and Head of Operations at
+              GirlScript Foundation, focused on scaling operational systems,
+              deployment workflows, contributor infrastructure, and execution
+              environments.<br /><br />Previously worked across Web3
+              infrastructure, developer tooling, and production engineering
+              systems through Web3Conf India, Dehidden, and HCL Technologies.
+            </p>
+            <p class="m-signal">
+              <span>GirlScript Foundation</span><span>Web3Conf India</span
+              ><span>Operations Infrastructure</span
+              ><span>Deployment Systems</span>
+            </p>
+            <div class="m-links">
+              <a class="m-link" href="#">LinkedIn</a>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="member">
-    <div>
-      <div class="m-name">Ojas</div>
-      <div class="m-role">Operations Infrastructure · Systems Execution · Deployment</div>
-    </div>
-    <div>
-      <p class="m-bio">Co-Founder at Smartly Ventures and Head of Operations at GirlScript Foundation, focused on scaling operational systems, deployment workflows, contributor infrastructure, and execution environments.<br/><br/>Previously worked across Web3 infrastructure, developer tooling, and production engineering systems through Web3Conf India, Dehidden, and HCL Technologies.</p>
-      <p class="m-signal"><span>GirlScript Foundation</span><span>Web3Conf India</span><span>Operations Infrastructure</span><span>Deployment Systems</span></p>
-      <div class="m-links">
-        <a class="m-link" href="#">LinkedIn</a>
-      </div>
-    </div>
-  </div>
-</div>
 
-<span class="ch-sec-lbl">Founding Systems Cohort</span>
-<div class="ch-members">
-  <div class="member">
-    <div>
-      <div class="m-name">Soham<br/>Bhoir</div>
-      <div class="m-role">AI Systems · Cybersecurity · Quantum ML</div>
-    </div>
-    <div>
-      <p class="m-bio">AI systems engineer focused on cybersecurity, quantum machine learning, and production infrastructure. Published multiple research papers across dark web intelligence, quantum transfer learning, and AI systems.<br/><br/>Recognized among the top 1% engineers at Oracle through the Pace Setter Award. Built and deployed systems recognized by Mumbai Police and multiple national technology competitions.</p>
-      <p class="m-signal"><span>Oracle</span><span>Quantum ML</span><span>Cybersecurity</span><span>Production Systems</span><span>Research</span></p>
-      <div class="m-links">
-        <a class="m-link" href="#">LinkedIn</a>
-        <a class="m-link" href="#">GitHub</a>
-        <a class="m-link" href="#">Portfolio</a>
+      <span class="ch-sec-lbl">Founding Systems Cohort</span>
+      <div class="ch-members">
+        <div class="member">
+          <div>
+            <div class="m-name">Soham<br />Bhoir</div>
+            <div class="m-role">AI Systems · Cybersecurity · Quantum ML</div>
+          </div>
+          <div>
+            <p class="m-bio">
+              AI systems engineer focused on cybersecurity, quantum machine
+              learning, and production infrastructure. Published multiple
+              research papers across dark web intelligence, quantum transfer
+              learning, and AI systems.<br /><br />Recognized among the top 1%
+              engineers at Oracle through the Pace Setter Award. Built and
+              deployed systems recognized by Mumbai Police and multiple national
+              technology competitions.
+            </p>
+            <p class="m-signal">
+              <span>Oracle</span><span>Quantum ML</span
+              ><span>Cybersecurity</span><span>Production Systems</span
+              ><span>Research</span>
+            </p>
+            <div class="m-links">
+              <a class="m-link" href="#">LinkedIn</a>
+              <a class="m-link" href="#">GitHub</a>
+              <a class="m-link" href="#">Portfolio</a>
+            </div>
+          </div>
+        </div>
+        <div class="member">
+          <div>
+            <div class="m-name">Aniruddha</div>
+            <div class="m-role">
+              Backend Infrastructure · Cloud Systems · AI Engineering
+            </div>
+          </div>
+          <div>
+            <p class="m-bio">
+              Backend and AI systems engineer focused on production
+              infrastructure, cloud systems, payments, and distributed
+              networking. Led backend and cloud engineering across AI SaaS
+              systems, automation pipelines, database migrations, and production
+              deployments.<br /><br />Contributor to Protocol Labs' py-libp2p
+              networking ecosystem and multiple open-source infrastructure
+              systems.
+            </p>
+            <p class="m-signal">
+              <span>Cloud Infrastructure</span><span>Distributed Systems</span
+              ><span>Protocol Labs</span><span>Backend</span><span>OSS</span>
+            </p>
+            <div class="m-links">
+              <a class="m-link" href="#">LinkedIn</a>
+              <a class="m-link" href="#">GitHub</a>
+            </div>
+          </div>
+        </div>
+        <div class="member">
+          <div>
+            <div class="m-name">Keerthivasan<br />S V</div>
+            <div class="m-role">
+              Autonomous Systems · Distributed Infrastructure · AI Orchestration
+            </div>
+          </div>
+          <div>
+            <p class="m-bio">
+              Infrastructure and autonomous systems engineer focused on
+              distributed AI systems, orchestration infrastructure, edge AI,
+              low-latency systems, and production deployment.<br /><br />Built
+              multi-agent research systems, enterprise AI voice infrastructure,
+              semantic orchestration frameworks, edge AI systems, and
+              low-latency trading infrastructure. Contributor across Protocol
+              Labs ecosystem.
+            </p>
+            <p class="m-signal">
+              <span>Multi-agent Systems</span><span>Edge AI</span
+              ><span>Protocol Labs</span><span>OSS</span
+              ><span>Low-latency Infra</span>
+            </p>
+            <div class="m-links">
+              <a class="m-link" href="#">LinkedIn</a>
+              <a class="m-link" href="#">GitHub</a>
+              <a class="m-link" href="#">PyPI</a>
+            </div>
+          </div>
+        </div>
+        <div class="member">
+          <div>
+            <div class="m-name">Neha<br />Kumari</div>
+            <div class="m-role">
+              Web3 Infrastructure · Agentic Systems · P2P &amp; Decentralized
+              Infra
+            </div>
+          </div>
+          <div>
+            <p class="m-bio">
+              Full-stack engineer building at the intersection of agentic AI
+              systems, Web3 infrastructure, and decentralized P2P networks.
+              Protocol Labs Dev Guild contributor across 5 consecutive cohorts
+              (PLDG 2–6). Maintainer at Storacha, building MCP-integrated and
+              LLM-powered agentic tools.<br /><br />4× hackathon award winner —
+              Rachax402 ($504, PLDG Frontiers), GhostLock ($750, Dcipher Loops
+              Hacker House), LLMesh (3rd, Protocol Labs × AI Hackathon).
+              Published author. 4 research works.
+            </p>
+            <p class="m-signal">
+              <span>Protocol Labs PLDG 2–6</span><span>Storacha</span
+              ><span>Agentic Systems</span><span>Web3 Infra</span
+              ><span>P2P Networks</span>
+            </p>
+            <div class="m-links">
+              <a
+                class="m-link"
+                href="https://www.linkedin.com/in/neha-kumari711"
+                target="_blank"
+                >LinkedIn</a
+              >
+              <a
+                class="m-link"
+                href="https://github.com/Nkovaturient"
+                target="_blank"
+                >GitHub</a
+              >
+              <a
+                class="m-link"
+                href="https://nehakumari711.netlify.app/neha_kumari_portfolio"
+                target="_blank"
+                >Portfolio</a
+              >
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="member">
-    <div>
-      <div class="m-name">Aniruddha</div>
-      <div class="m-role">Backend Infrastructure · Cloud Systems · AI Engineering</div>
-    </div>
-    <div>
-      <p class="m-bio">Backend and AI systems engineer focused on production infrastructure, cloud systems, payments, and distributed networking. Led backend and cloud engineering across AI SaaS systems, automation pipelines, database migrations, and production deployments.<br/><br/>Contributor to Protocol Labs' py-libp2p networking ecosystem and multiple open-source infrastructure systems.</p>
-      <p class="m-signal"><span>Cloud Infrastructure</span><span>Distributed Systems</span><span>Protocol Labs</span><span>Backend</span><span>OSS</span></p>
-      <div class="m-links">
-        <a class="m-link" href="#">LinkedIn</a>
-        <a class="m-link" href="#">GitHub</a>
+
+      <div class="ch-closing">
+        <div class="ch-closing-inner">
+          <p class="ch-closing-big">
+            AI doesn't get better<br />by shipping alone.<br /><br />
+            <span class="dim"
+              >It gets better through the people<br />who use it, correct it,
+              and push it further.</span
+            >
+          </p>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="member">
-    <div>
-      <div class="m-name">Keerthivasan<br/>S V</div>
-      <div class="m-role">Autonomous Systems · Distributed Infrastructure · AI Orchestration</div>
-    </div>
-    <div>
-      <p class="m-bio">Infrastructure and autonomous systems engineer focused on distributed AI systems, orchestration infrastructure, edge AI, low-latency systems, and production deployment.<br/><br/>Built multi-agent research systems, enterprise AI voice infrastructure, semantic orchestration frameworks, edge AI systems, and low-latency trading infrastructure. Contributor across Protocol Labs ecosystem.</p>
-      <p class="m-signal"><span>Multi-agent Systems</span><span>Edge AI</span><span>Protocol Labs</span><span>OSS</span><span>Low-latency Infra</span></p>
-      <div class="m-links">
-        <a class="m-link" href="#">LinkedIn</a>
-        <a class="m-link" href="#">GitHub</a>
-        <a class="m-link" href="#">PyPI</a>
-      </div>
-    </div>
-  </div>
-  <div class="member">
-    <div>
-      <div class="m-name">Neha<br/>Kumari</div>
-      <div class="m-role">Web3 Infrastructure · Agentic Systems · P2P &amp; Decentralized Infra</div>
-    </div>
-    <div>
-      <p class="m-bio">Full-stack engineer building at the intersection of agentic AI systems, Web3 infrastructure, and decentralized P2P networks. Protocol Labs Dev Guild contributor across 5 consecutive cohorts (PLDG 2–6). Maintainer at Storacha, building MCP-integrated and LLM-powered agentic tools.<br/><br/>4× hackathon award winner — Rachax402 ($504, PLDG Frontiers), GhostLock ($750, Dcipher Loops Hacker House), LLMesh (3rd, Protocol Labs × AI Hackathon). Published author. 4 research works.</p>
-      <p class="m-signal"><span>Protocol Labs PLDG 2–6</span><span>Storacha</span><span>Agentic Systems</span><span>Web3 Infra</span><span>P2P Networks</span></p>
-      <div class="m-links">
-        <a class="m-link" href="https://www.linkedin.com/in/neha-kumari711" target="_blank">LinkedIn</a>
-        <a class="m-link" href="https://github.com/Nkovaturient" target="_blank">GitHub</a>
-        <a class="m-link" href="https://nehakumari711.netlify.app/neha_kumari_portfolio" target="_blank">Portfolio</a>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="ch-closing">
-  <div class="ch-closing-inner">
-    <p class="ch-closing-big">
-      AI doesn't get better<br/>by shipping alone.<br/><br/>
-      <span class="dim">It gets better through the people<br/>who use it, correct it, and push it further.</span>
-    </p>
-  </div>
-</div>
+      <footer>
+        <div class="f-brand">
+          <span class="f-brand-top">
+            <img class="f-brand-img" src="./Logos-3.png" alt="" />
+            Smartly Labs
+          </span>
+        </div>
+        <div class="f-links">
+          <span
+            class="f-link"
+            style="cursor: pointer"
+            onclick="showPage('main')"
+            >← Main site</span
+          >
+          <a class="f-link" href="mailto:hello@smartlylabs.ai"
+            >hello@smartlylabs.ai</a
+          >
+        </div>
+      </footer>
+    </div>
+    <!-- /page-cohort -->
 
-<footer>
-  <div class="f-brand">
-    <span class="f-brand-top">
-      <img class="f-brand-img" src="./Logos-3.png" alt=""/>
-      Smartly Labs
-    </span>
-  </div>
-  <div class="f-links">
-    <span class="f-link" style="cursor:pointer" onclick="showPage('main')">← Main site</span>
-    <a class="f-link" href="mailto:hello@smartlylabs.ai">hello@smartlylabs.ai</a>
-  </div>
-</footer>
-
-</div><!-- /page-cohort -->
-
-<script>
-function showPage(name){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+name).classList.add('active');
-  window.scrollTo(0,0);
-  initSR();
-}
-function goTop(){
-  if(document.getElementById('page-main').classList.contains('active')){
-    window.scrollTo({top:0,behavior:'smooth'});
-  } else {
-    showPage('main');
-  }
-  return false;
-}
-function initSR(){
-  const els=document.querySelectorAll('.page.active .sr:not(.on)');
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);}});
-  },{threshold:.04,rootMargin:'0px 0px -8px 0px'});
-  els.forEach(el=>obs.observe(el));
-}
-initSR();
-</script>
-</body>
+    <script>
+      function showPage(name) {
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+        document.getElementById("page-" + name).classList.add("active");
+        window.scrollTo(0, 0);
+        initSR();
+      }
+      function goTop() {
+        if (document.getElementById("page-main").classList.contains("active")) {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+          showPage("main");
+        }
+        return false;
+      }
+      function initSR() {
+        const els = document.querySelectorAll(".page.active .sr:not(.on)");
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("on");
+                obs.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.04, rootMargin: "0px 0px -8px 0px" },
+        );
+        els.forEach((el) => obs.observe(el));
+      }
+      initSR();
+    </script>
+  </body>
 </html>
