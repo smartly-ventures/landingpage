@@ -146,6 +146,56 @@
       .n-cta:hover {
         opacity: 0.82;
       }
+      .n-right {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+      }
+      .n-programs {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding-right: 22px;
+        border-right: 1px solid var(--line);
+        height: 28px;
+      }
+      .n-prog-lbl {
+        font-family: "DM Mono", monospace;
+        font-size: 9.5px;
+        font-weight: 300;
+        color: var(--ink4);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+      .n-prog {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        opacity: 0.72;
+        transition: opacity 0.2s;
+        text-decoration: none;
+      }
+      .n-prog:hover {
+        opacity: 1;
+      }
+      .n-prog img {
+        display: block;
+        width: auto;
+      }
+      .n-prog-nv img {
+        height: 26px;
+      }
+      .n-prog-sv img {
+        height: 11px;
+      }
+      .n-prog-sv span {
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--ink);
+        white-space: nowrap;
+        letter-spacing: -0.01em;
+      }
 
       /* SHARED TYPE */
       .wi {
@@ -448,29 +498,9 @@
         display: block;
         height: auto;
       }
-      .program-nv img {
-        height: 52px;
+      .partner-avano img {
+        height: 30px;
         width: auto;
-      }
-      .program-sv {
-        gap: 14px;
-      }
-      .program-sv img {
-        height: 18px;
-        width: auto;
-      }
-      .program-sv .pdiv {
-        width: 1.5px;
-        height: 40px;
-        background: var(--ink);
-      }
-      .program-sv .ptxt {
-        font-size: 14px;
-        font-weight: 600;
-        line-height: 1.15;
-        color: var(--ink);
-        text-align: left;
-        letter-spacing: -0.01em;
       }
 
       /* ============ PROBLEM ============ */
@@ -968,6 +998,16 @@
           padding: 120px 20px 64px;
         }
       }
+      @media (max-width: 860px) {
+        .n-prog-lbl {
+          display: none;
+        }
+      }
+      @media (max-width: 640px) {
+        .n-programs {
+          display: none;
+        }
+      }
       @media (max-width: 720px) {
         nav {
           padding: 0 16px;
@@ -1020,17 +1060,8 @@
         .programs-row {
           gap: 24px 36px;
         }
-        .program-nv img {
-          height: 44px;
-        }
-        .program-sv img {
-          height: 15px;
-        }
-        .program-sv .pdiv {
-          height: 34px;
-        }
-        .program-sv .ptxt {
-          font-size: 12px;
+        .partner-avano img {
+          height: 24px;
         }
         footer {
           padding: 20px 16px;
@@ -1076,7 +1107,41 @@
         <img class="n-logo-img" src="./Logos-3.png" alt="Smartly Labs" />
         <span class="n-logo-word">Smartly Labs</span>
       </a>
-      <a class="n-cta" href="mailto:hello@smartlylabs.ai">Book a demo</a>
+      <div class="n-right">
+        <div class="n-programs">
+          <span class="n-prog-lbl">Member of</span>
+          <a
+            class="n-prog n-prog-nv"
+            href="https://www.nvidia.com/en-us/startups/"
+            target="_blank"
+            rel="noopener"
+            aria-label="NVIDIA Inception Program"
+          >
+            <img
+              src="./nvidia-inception-white.png"
+              alt="NVIDIA Inception Program"
+              width="413"
+              height="159"
+            />
+          </a>
+          <a
+            class="n-prog n-prog-sv"
+            href="https://www.sarvam.ai"
+            target="_blank"
+            rel="noopener"
+            aria-label="Sarvam for Startups"
+          >
+            <img
+              src="./sarvam-white.png"
+              alt="Sarvam"
+              width="360"
+              height="58"
+            />
+            <span>for Startups</span>
+          </a>
+        </div>
+        <a class="n-cta" href="mailto:hello@smartlylabs.ai">Book a demo</a>
+      </div>
     </nav>
 
     <!-- PAGE: MAIN -->
@@ -1172,39 +1237,23 @@
         <div class="stats-note">Beta numbers</div>
       </section>
 
-      <!-- 2b. PROGRAMS -->
+      <!-- 2b. DESIGN PARTNERS -->
       <section class="programs">
-        <span class="programs-lbl sr">Member of</span>
+        <span class="programs-lbl sr">Design Partners</span>
         <div class="programs-row sr d1">
           <a
-            class="program program-nv"
-            href="https://www.nvidia.com/en-us/startups/"
+            class="program partner-avano"
+            href="https://www.avanoai.ai"
             target="_blank"
             rel="noopener"
-            aria-label="NVIDIA Inception Program"
+            aria-label="Avano AI"
           >
             <img
-              src="./nvidia-inception-white.png"
-              alt="NVIDIA Inception Program"
-              width="413"
-              height="159"
+              src="./avano-white.png"
+              alt="Avano AI"
+              width="703"
+              height="107"
             />
-          </a>
-          <a
-            class="program program-sv"
-            href="https://www.sarvam.ai"
-            target="_blank"
-            rel="noopener"
-            aria-label="Sarvam for Startups"
-          >
-            <img
-              src="./sarvam-white.png"
-              alt="Sarvam"
-              width="360"
-              height="58"
-            />
-            <span class="pdiv"></span>
-            <span class="ptxt">for<br />Startups</span>
           </a>
         </div>
       </section>
